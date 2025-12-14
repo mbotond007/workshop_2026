@@ -1,0 +1,144 @@
+--Idegen kulcs beállítása
+ALTER TABLE topics
+ADD CONSTRAINT fk_topics_branches
+    FOREIGN KEY (branch_id)
+    REFERENCES branches(branch_id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE;
+
+Az adattáblákat nekem egyszerűbb rendezni és szerkeszteni MS Excelben. A MySQL UI nagyon kényelmetlen. A módszerem a következő: A táblát exportálom: 
+Exportálás beállítások:
+CSV for MS Excel karakter: windows-1250 
+
+Vagy
+
+file: .csv 
+karakter: windows-1250 
+oszlopok elválasztása: "; "
+közbezárás:"" 
+escape-elés:"" 
+végződés:auto
+Szerkesztem Excelben elmentem, kitörölöm az első sort a csv-ben.
+A MySQL-ben kitörölöm a tábla tartalmát (a felülírást nem sikerült megoldani), majd importálom az exporttal azonos beálításokkal.
+
+táblatörlés (pl.:glossary)
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE glossary;
+SET FOREIGN_KEY_CHECKS = 1;
+
+ALTER TABLE subtopics
+ADD CONSTRAINT fk_subtopics_topics
+    FOREIGN KEY (topic_id)
+    REFERENCES topics(topic_id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE;
+
+
+a "documents" tábla elkészítése:
+CREATE TABLE documents (
+    document_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    title_hu VARCHAR(255) NOT NULL,
+    title_en VARCHAR(255) DEFAULT NULL,
+
+    description_hu TEXT DEFAULT NULL,
+    description_en TEXT DEFAULT NULL,
+
+    document_type ENUM(
+        'pdf',
+        'link',
+        'image',
+        'gif',
+        'audio',
+        'video_local'
+    ) NOT NULL,
+
+    file_url VARCHAR(512) NOT NULL,
+    thumbnail_url VARCHAR(512) DEFAULT NULL,
+
+    mime_type VARCHAR(100) DEFAULT NULL,
+    file_size_mb DECIMAL(6,2) DEFAULT NULL,
+
+    is_external TINYINT(1) NOT NULL DEFAULT 0,
+
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+
+új mező létrehozása:
+
+ALTER TABLE topics
+ADD COLUMN has_subtopic TINYINT(1) NOT NULL DEFAULT 0;
+
+a has_subtopic mező kitöltése a subtopic tábla idegenkulcs alapján
+
+UPDATE topics t
+LEFT JOIN (
+    SELECT topic_id, COUNT(*) AS cnt
+    FROM subtopics
+    GROUP BY topic_id
+) s ON t.topic_id = s.topic_id
+SET t.has_subtopic = IF(s.cnt > 0, 1, 0);
+
+
+kapcsolótábla:
+
+CREATE TABLE subtopic_documents (
+    subtopic_document_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    subtopic_id INT(11) NOT NULL,
+    document_id INT UNSIGNED NOT NULL,
+
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_sd_subtopic
+        FOREIGN KEY (subtopic_id)
+        REFERENCES subtopics(subtopic_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_sd_document
+        FOREIGN KEY (document_id)
+        REFERENCES documents(document_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    UNIQUE KEY uq_subtopic_document (subtopic_id, document_id),
+    INDEX idx_sd_subtopic (subtopic_id),
+    INDEX idx_sd_document (document_id)
+
+) ENGINE=InnoDB
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+kapcsolótábla:
+CREATE TABLE subtopic_videos (
+    subtopic_videos_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    subtopic_id INT(11) NOT NULL,
+    video_id INT UNSIGNED NOT NULL,
+
+    CONSTRAINT fk_sd_subtopic2
+        FOREIGN KEY (subtopic_id)
+        REFERENCES subtopics(subtopic_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_sd_video
+        FOREIGN KEY (video_id)
+        REFERENCES videos(video_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    UNIQUE KEY uq_subtopic_video (subtopic_id, video_id),
+    INDEX idx_sd_subtopic (subtopic_id),
+    INDEX idx_sd_video (video_id)
+
+) ENGINE=InnoDB
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
