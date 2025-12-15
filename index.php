@@ -3,7 +3,6 @@
 session_start();
 
 require_once __DIR__ . '/config/connect.php';
-//include("connect.php");
 
 if (isset($_GET['logout'])) {
     session_unset();
@@ -27,12 +26,7 @@ if (isset($_GET['logout'])) {
 
         <script type="module" src="assets/js/app.js"></script>
 
-        <!--<script type="text/javascript" src="js/render-topics.js"></script>	
-        <script type="text/javascript" src="js/header-menu.js"></script>	
-        <script type="text/javascript" src="js/category-bar.js"></script>	
-        <script type="text/javascript" src="js/registry-controller.js"></script>
-        <script type="text/javascript" src="js/login-controller.js"></script>
-        -->
+      
     </head>
     
     <body>
@@ -41,68 +35,54 @@ if (isset($_GET['logout'])) {
              <!-- dynamic content will be generated here -->              
             </div>
         </header>
-            
-                
+         
+                        
         <main class="main-content" id="main-content">
 
-            <section class="hero" id="hero">
-                
-                <div class="hero__left">
+            <div class="main-content__left">
                     <!-- TODO: dynamic content will be generated here -->
                     <img src="assets/images/logo2.svg" alt="Molnár Botond Fizika Szertára">
-                </div>	
-                <div class="hero__mid">
-                    <!-- TODO: dynamic content will be generated here -->
-                    <h1>Üdvözlöm a Fizika Szertárban!</h1>
-                    <h2>Ingyenes ismeretterjesztő tartalmak és tanagyagok fizikából és matematikából!</h2>
-                    <h2>A házigazda: Molnár Botond</h2>
-                    <button>Vendégkönyv</button>
-                </div>	
-                <div class="hero__right">
-                    <!-- TODO: dynamic content will be generated here -->
-                    Jobb oldalsáv
-                </div>					
-                
-            </section>
+            </div>
 
-            <nav class="category-bar" id="category-bar">
-                
-                <div class="category-bar__inside" id="category-bar__inside">
-                    
-                    <ul class="category-bar__list horizontal-list" id="category-bar__list">
-                     <!-- dynamic content will be generated here engine-> category-bar.js-->   
-                    </ul>	
-
-                </div>
-            </nav>
-
-            <section class="form-box" id="form-box">
-            </section>	
-
-            <section class="topic-box" id="topic-box">
-                <!-- TODO: dynamic content will be generated here -->
-                <div class="topic-box__left">
-                    Bal oldalsáv
-                </div>	
-                <div class="topic-box__mid">
-                    <img src="assets/images/laboratory_en.jpg">
-                    <img src="assets/images/laboratory_en.jpg">
-                </div>	
-                <div class="topic-box__right">
-                    Jobb oldalsáv
-                </div>					
-            </section>	
-        
-            <section class="content-box" id="content-box">
-                <!-- TODO: dynamic content will be generated here -->
-                <img src="assets/images/laboratory_hu.jpg">
-                <img src="assets/images/laboratory_hu.jpg">
-                <img src="assets/images/laboratory_hu.jpg">
-                <img src="assets/images/laboratory_hu.jpg">
-                <img src="assets/images/laboratory_hu.jpg">
-                <img src="assets/images/laboratory_hu.jpg">
-            </section>
+            <div class="main-content__mid">
             
+                <section class="hero" id="hero">
+                                    
+                    <div class="hero__inside" id="hero__inside">
+                        <!-- TODO: dynamic content will be generated here -->
+                        <h1>Üdvözlöm a Fizika Szertárban!</h1>
+                        <h2>Ingyenes ismeretterjesztő tartalmak és tanagyagok fizikából és matematikából!</h2>
+                        <h2>A házigazda: Molnár Botond</h2>
+                        <button>Vendégkönyv</button>
+                    </div>		
+                    
+                </section>
+
+                <nav class="category-bar" id="category-bar">
+                    
+                    <div class="category-bar__inside" id="category-bar__inside">
+                        
+                        <ul class="category-bar__list horizontal-list" id="category-bar__list">
+                        <!-- dynamic content will be generated here engine-> category-bar.js-->   
+                        </ul>	
+
+                    </div>
+                </nav>
+
+                <section class="topic-box" id="topic-box">
+                    <!-- TODO: dynamic content will be generated here -->
+                    <img src="assets/images/laboratory_hu.jpg">
+                    <img src="assets/images/laboratory_hu.jpg">
+                    <img src="assets/images/laboratory_hu.jpg">
+                </section>
+
+            </div>    
+        
+            <div class="main-content__right">
+                    <!-- TODO: dynamic content will be generated here -->
+                    Jobb oldalsáv
+            </div>		
+                
         </main>
 
         <footer class="footer" id="footer">

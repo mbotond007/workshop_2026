@@ -3,7 +3,17 @@ require_once __DIR__ . '/../../config/connect.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-$result = $connection->query("SELECT * FROM category_bar ORDER BY sort_order");
+$sql = "
+    SELECT
+        subtopic_id,
+        topic_id,
+        subtopic_name_hu,
+        sort_order
+    FROM subtopics
+    ORDER BY topic_id, sort_order
+";
+
+$result = $connection->query($sql);
 
 if (!$result) {
     http_response_code(500);
@@ -24,3 +34,4 @@ echo json_encode([
     "success" => true,
     "data" => $data
 ]);
+?>

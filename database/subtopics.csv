@@ -1,0 +1,160 @@
+1;Mozgás;Motion;1;1
+2;Egyenletes mozgás;Uniform motion;1;2
+3;Változó mozgás;Accelerating motion;1;3
+4;Hajítások;Projectile motion;2;1
+5;Newton törvények;Newton's  laws;4;1
+6;Tömegvonzási  erõ;Gravity force;5;1
+7;Súly;Weight;5;2
+8;Rugalmas erõ;Elastic force;5;3
+9;Súrlódási erõ;Friction force;5;4
+10;Közegellenállási erõ;Fluid resistance;5;5
+11;Mechanikai munka;Mechanical work;6;1
+12;Konzervatív erõk;Conservative forces;6;2
+13;Helyzeti energia;Potential energy;6;3
+14;Mozgási energia;Kinetic energy;6;4
+15;Rugalmas energia;Elastic potential energy;6;5
+16;Munkatétel;Work and Energy;6;6
+17;Energia megmaradás;Conservation of energy;6;7
+18;Lendület;Momentum;7;1
+19;Tömegpont rendszer;Point of mass system;7;2
+20;Lendület megmaradás;Conservation of momentum;7;3
+21;Ütközések;Collisions;7;4
+22;Egyenletes körmozgás;Uniform circular motion;3;1
+23;A körmozgás dinamikája;Dynamics of circular motion;3;2
+24;Bolygók mozgása;Orbital motion;3;3
+25;Forgatónyomaték;Torque;8;1
+26;Merev test egyensúlya;Rigid body equilibrium;8;2
+27;Gyorsuló forgómozgás;Accelerating rotational motion;8;3
+28;Harmonikus rezgõmozgás;Harmonic oscillation;3;4
+29;Mechanikai hullámok;Mechanical waves;9;1
+30;Hangtan;Physics of sound;9;2
+31;Nyomás;Pressure;10;1
+32;Pascal törvény;Pascal Law;10;2
+33;Hidrosztatikai nyomás;Hydrostatic pressure;10;3
+34;Molekuláris erõk folyadékokban;Intermolecular Forces in Liquids;10;4
+35;Áramló közeg;Flowing medium;10;5
+36;Hõmérséklet;Temperature;11;1
+37;Hõtágulás;Thermal expansion;11;2
+38;Hõcsere folyamatok;Heat transfer;12;1
+39;Hõkapacitás;Heat capacity;12;2
+40;Halmazállapot-változások;Physical state changes;13;1
+41;Gáztörvények;Gas laws;14;1
+42;Gázok kinetikus modellje;Kinetic model of gases;14;2
+43;Belsõ energia;Internal energy;15;1
+44;A termodinamika 1. fõtétele;Law 1 of thermodynamics;15;2
+45;Hõerõgépek, 2. fõtétel;Heat Engines;15;3
+46;Elektromos alapjelenségek;Basic electrical phenomena;16;1
+47;Elektrosztatikus tér;Electrostatic field;16;2
+48;Vezetõk elektromos térben;Electric charge on conductors;16;3
+49;Elektromos áram;Electric current;17;1
+50;Áramforrások;Sources of electricity;17;2
+51;Elektromos ellenállás;Electrical resistance;17;3
+52;Áramkörök, kapcsolások;Electric circuit patterns;17;4
+53;Mágneses tér, Gerjesztés;Magnetic field, Excitation;18;1
+54;Elektromos indukció;Electrical induction;18;2
+55;Elektromosság a háztartásban;Electricity at home;17;5
+56;Maxwell egyenletek;Maxwell equations;18;3
+57;Elektromágneses hullámok;Electromagnetic waves;19;1
+58;A látható fény, a fény hullám;The wave nature of light;19;2
+59;A fény részecsketermészete;Particle nature of light;21;1
+60;Sugármenetek;Light rays path;20;1
+61;Leképezõ eszközök;Optical Devices;20;2
+62;Optikai eszközök;Optical Instruments;20;3
+63;Atommodellek;Atomic models;22;1
+64;Speciális relativitás;Special relativity;19;3
+65;Elektronfizika, anyaghullámok;Electron physics, matter wave;22;2
+66;Erõs kölcsönhatás;Strong interaction;23;1
+67;Radioaktivitás;Radioactivity;23;2
+68;Nukleáris energia,  erõmû;Nuclear energy, power plant;23;3
+69;Energia és Fenntarthatóság;Energy sources and Sustainability;26;1
+70;Csillagászat, Ûrkutatás;Astronomy, Space exploration;24;1
+71;Naprendszer;Solar system;24;2
+72;Fizikatörténet;History of Physics;27;1
+73;Modellalkotás;Modelling;25;1
+74;Ismeretelmélet;Epistemology ;28;1
+75;Halmazok megadása, relációk;eng;29;1
+76;Halmaz mûveletek;eng;29;2
+77;Halmazok elemszáma, szita;eng;29;3
+78;Intervallumok;eng;29;4
+79;Logikai mûveletek;eng;30;1
+80;Tagadás, megfordítás;eng;30;2
+81;Variációk, permutáció;eng;31;1
+82;Kombináciõ, binomiális e.h.;eng;31;2
+83;Esetszétválasztás;eng;31;3
+84;Gráfok;eng;32;1
+85;Prímszámok;eng;33;1
+86;Számelmélet Alaptétele;eng;33;2
+87;Oszthatósági szabályok;eng;34;1
+88;Közös osztó, közös többszörös;eng;34;2
+89;Maradék osztályok;eng;34;3
+90;Polinomok rendezése;eng;35;1
+91;Polinomok szorzattá alakítása;eng;35;2
+92;Racionális törtek;eng;35;3
+93;Hatványozás pozitív kitevõre;eng;36;1
+94;Hatványozás kiterjesztése, gyökvonás;eng;36;2
+95;Exponenciális függvény;eng;37;1
+96;Exponenciális egyenletek;eng;37;2
+97;Exponenciális egyenlõtlenségek;eng;37;3
+98;Logaritmus függvény;eng;37;4
+99;Logaritmus azonosságai;eng;37;5
+100;Logaritmikus egyenletek;eng;37;6
+101;Logaritmikus egyenlõtlenségek;eng;37;7
+102;Százalékszámítás;eng;38;1
+103;Elsõfokú egyenletek, egyenlõtlenségek;eng;39;1
+104;Lineáris egyenletrendszerek;eng;39;2
+105;Másodfokú egyenletek, egyenlõtlenségek;eng;39;3
+106;Gyökös egyenletek;eng;39;4
+107;Trigonometrikus egyenletek;eng;39;5
+108;Exponenciális, logaritmikus egyenletek;eng;39;6
+109;Lineáris függvény;eng;40;1
+110;Másodfokú- és gyökfüggvény;eng;40;2
+111;Trigonometrikus függvény;eng;40;3
+112;Logaritmus/Exponenciális függvény;eng;40;4
+113;Grafikonnal megadott függvény jellemzése;eng;41;1
+114;Másodfokú- és gyökfüggvény jellemzése;eng;41;2
+115;Trigonometrikus függvény jellemzése;eng;41;3
+116;Logaritmus/Exponenciális függvény jellemzése;eng;41;4
+117;Számsorozatok;eng;42;1
+118;Rekurzív sorozatok;eng;42;2
+119;Számtani sorozatok megadása;eng;43;1
+120;Számtani sorozat összege;eng;43;2
+121;Mértani sorozatok;eng;44;1
+122;Mértani sorozatok összege;eng;44;2
+123;Sík- és térelemek;eng;45;1
+124;Háromszögek;eng;45;2
+125;Négyszögek;eng;45;3
+126;Sokszögek;eng;45;4
+127;Kör;eng;45;5
+128;Egybevágósági transzformációk;eng;46;1
+129;Hasonlóság;eng;46;2
+130;Hegyesszög szögfüggvényei;eng;47;1
+131;Forgásszög szögfüggvényei;eng;47;2
+132;Szinusz- koszinusztétel;eng;47;3
+133;Alapmûveletek vektorokkal;eng;48;1
+134;Vektorok és koordináták;eng;48;2
+135;Vektorok skaláris és vektoriális szorzata;eng;48;3
+136;Egyenes egyenlete;eng;49;1
+137;Távolság, szög;eng;49;2
+138;Kör egyenlete;eng;49;3
+139;Parabola egyenlete;eng;49;4
+140;Hasábok;eng;50;1
+141;Gömb, gúla, kúp;eng;50;2
+142;Térbeli távolságok, szögek;eng;50;3
+143;Csonkagúla, csonkakúp;eng;50;4
+144;Minta jellemzése;eng;51;1
+145;Grafikonok statisztikában;eng;51;2
+146;Kombinatorikus valószínûség;eng;52;1
+147;Véges eloszlások;eng;52;2
+148;A fizika középszintû érettségi dokumentumai;eng;53;3
+149;Hogyan készüljünk fizika középszintû érettségire;eng;53;4
+150;A fizika emeltszintû érettségi dokumentumai;eng;54;1
+151;A matematika középszintû érettségi dokumentumai;eng;55;1
+152;Hogyan készüljünk matematika középszintû érettségire;eng;55;2
+153;A matematika emeltszintû érettségi dokumentumai;eng;56;1
+154;Fizika animációk;eng;57;1
+155;Fizika tananyagok;eng;57;2
+156;Matematika tananyagok;eng;58;1
+157;Saját fizika videók;eng;59;1
+158;Fizika videók;eng;59;2
+159;Saját matematika videók;eng;60;1
+160;Matematika videók;eng;60;2

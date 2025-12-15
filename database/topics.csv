@@ -1,0 +1,65 @@
+1;topic physics-topic;Egyszerû mozgások;Simple motions;1;1;1
+2;topic physics-topic;Összetett mozgások;Complex motions;1;2;1
+3;topic physics-topic;Periodikus mozgások;Periodic motions;1;3;1
+4;topic physics-topic;Newton törvények;Newtonian laws;1;4;1
+5;topic physics-topic;Erõk;Forces;1;5;1
+6;topic physics-topic;Munka/Mechanikai Energia;Work/Mechanical Energies;1;6;1
+7;topic physics-topic;Lendület/Ütközések;Momentum/Collisions;1;7;1
+8;topic physics-topic;Kiterjedt testek/Forgómozgás;Extended bodies/Rotary motion;1;8;1
+9;topic physics-topic;Hullámok;Waves;1;9;1
+10;topic physics-topic;Deformálható közegek mechanikája;Mechanics of fluids;1;10;1
+11;topic physics-topic;Hõmérséklet változása;Temperature change;2;1;1
+12;topic physics-topic;Hõcsere;Heat transfer;2;2;1
+13;topic physics-topic;Halmazállapot-változások;Change of state;2;3;1
+14;topic physics-topic;Gázok fizikája;Physics of gases;2;4;1
+15;topic physics-topic;Termodinamika fõtételei;Laws of Themodinamics;2;5;1
+16;topic physics-topic;Elektrosztatika;Static electric fields;3;1;1
+17;topic physics-topic;Elektromos áram;Electric current;3;2;1
+18;topic physics-topic;Elektromágneses jelenségek;Electromagnetism;3;3;1
+19;topic physics-topic;Fizikai optika/Elektromágneses hullámok;Electromagnetic waves;5;1;1
+20;topic physics-topic;Geometriai optika;Optics;5;2;1
+21;topic physics-topic;A fény kettõs természete;Dual nature of light;5;3;1
+22;topic physics-topic;Az atom szerkezete;Atomic structure;4;1;1
+23;topic physics-topic;Atommag fizika;Nuclear physics;4;2;1
+24;topic physics-topic;Csillagászat;Astronomy;6;1;1
+25;topic physics-topic;Modellalkotás;Modelling;7;1;1
+26;topic physics-topic;Fenntarthatóság;Sustainability;7;2;1
+27;topic physics-topic;Fizika-történet;History of Physics;7;3;1
+28;topic physics-topic;Ismeretelmélet;Epistemology ;7;4;1
+29;topic math-topic;Halmazok;Sets;9;1;1
+30;topic math-topic;Logika;Logic;9;2;1
+31;topic math-topic;Kombinatorika;eng;9;3;1
+32;topic math-topic;Gráfok;eng;9;4;1
+33;topic math-topic;Számelmélet;eng;8;1;1
+34;topic math-topic;Oszthatóság;eng;8;2;1
+35;topic math-topic;Algebrai kifejezések;eng;8;3;1
+36;topic math-topic;Hatványozás;eng;8;4;1
+37;topic math-topic;Exponenciális/logaritmus;eng;8;5;1
+38;topic math-topic;Százalékszámítás;eng;8;6;1
+39;topic math-topic;Egyenletek;eng;8;7;1
+40;topic math-topic;Alapfüggvények transzformációi;eng;10;1;1
+41;topic math-topic;Függvények jellemzése;eng;10;2;1
+42;topic math-topic;Sorozatok megadása;eng;10;3;1
+43;topic math-topic;Számtani sorozatok;eng;10;4;1
+44;topic math-topic;Mértani sorozatok;eng;10;5;1
+45;topic math-topic;Elemi geometria;eng;11;1;1
+46;topic math-topic;Geometriai transzformációk;eng;11;2;1
+47;topic math-topic;Trigonometria;eng;11;3;1
+48;topic math-topic;Vektorok;eng;11;4;1
+49;topic math-topic;Koordináta geometria;eng;11;5;1
+50;topic math-topic;Térgeometria;eng;11;6;1
+51;topic math-topic;Statisztika;eng;12;1;1
+52;topic math-topic;Valószínûségszámítás;Probability;12;2;1
+53;topic maturity-topic;Középszintû fizika érettségi;eng;13;1;1
+54;topic maturity-topic;Emeltszintû fizika érettségi;eng;13;2;1
+55;topic maturity-topic;Középszintû matematika érettségi;eng;14;1;1
+56;topic maturity-topic;Emeltszintû matematika érettségi;eng;14;2;1
+57;topic link-topic;Fizika linkek;eng;15;1;1
+58;topic link-topic;Matematika linkek;eng;16;2;1
+59;topic video-topic;Fizika videók;eng;17;1;1
+60;topic video-topic;Matematika videók;eng;18;1;1
+61;topic workshop-topic;A videókról;eng;19;1;0
+62;topic workshop-topic;Egyéb dokumentumok;eng;19;2;0
+63;topic workshop-topic;Az MB szertár célja;eng;20;1;0
+64;topic workshop-topic;A szertár fejlesztése;eng;20;2;0
+65;topic workshop-topic;Felhasználói támogatás;eng;20;3;0

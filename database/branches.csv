@@ -1,0 +1,20 @@
+1;branch-item;physics-branch__1;Mechanika;Mechanics;1;1
+2;branch-item;physics-branch__2;Hõtan/Termodinamika;Thermodinamics;1;2
+3;branch-item;physics-branch__3;Elektromosságtan;Electricity;1;3
+4;branch-item;physics-branch__4;Atomfizika;Atomic physics;1;4
+5;branch-item;physics-branch__5;Fénytan/Optika;Optics;1;5
+6;branch-item;physics-branch__6;Csillagászat/Gravitáció;Astronomy/Space physics;1;6
+7;branch-item;physics-branch__7;Határterületek;Border areas;1;7
+8;branch-item;math-branch__1;Algebra, számelmélet;Algebra;2;1
+9;branch-item;math-branch__2;Gondolkodási módszerek;Thinking methods;2;2
+10;branch-item;math-branch__3;Analízis, függvények;Analysis, functions ;2;3
+11;branch-item;math-branch__4;Geometria;Geometry;2;4
+12;branch-item;math-branch__5;Statisztika, Valószínûség;Statistics, Probability;2;5
+13;branch-item;maturity-branch__1;Fizika érettségi;Maturity on Physics;3;1
+14;branch-item;maturity-branch__2;Matematika érettségi;Maturity on Math;3;2
+15;branch-item;link-branch__1;Fizika linkek;Links on Math;4;1
+16;branch-item;link-branch__2;Matematika linkek;Links on Physics;4;2
+17;branch-item;video-branch__1;Fizika videók;Math videos;5;1
+18;branch-item;video-branch__2;Matematika videók;Physics videos;5;2
+19;branch-item;workshop-branch__1;A tananyagok haszálata;Using learning materials;6;1
+20;branch-item;workshop-branch__2;Az MB szertárról;On the MB Workshop;6;2
