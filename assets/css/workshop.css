@@ -127,6 +127,28 @@ body
 	
 }
 
+.category-bar__branch-list,
+.category-bar__topic-list,
+.category-bar__subtopic-list {
+    display: none;
+    position: absolute;
+    background: #fff;
+}
+
+.category-bar__category:hover > .category-bar__branch-list {
+    display: block;
+}
+
+.category-bar__branch:hover > .category-bar__topic-list {
+    display: block;
+}
+
+.category-bar__topic:hover > .category-bar__subtopic-list {
+    display: block;
+}
+
+
+
 .category-button
 {
 	text-decoration:none;

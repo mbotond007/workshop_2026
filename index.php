@@ -17,16 +17,17 @@ if (isset($_GET['logout'])) {
 <!doctype html>
 <html>
     <head>
-        <title>Fizika Szertár 2025</title>
+        <title>Fizika Szertár 2026</title>
      
         <meta charset="utf-8"> 
         
-        <link rel="stylesheet" type="text/css" href="style/workshop.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/workshop.css">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        <!--<script type="text/javascript" src="js/load-topics.js"></script>	
-        <script type="text/javascript" src="js/render-topics.js"></script>	
+        <script type="module" src="assets/js/app.js"></script>
+
+        <!--<script type="text/javascript" src="js/render-topics.js"></script>	
         <script type="text/javascript" src="js/header-menu.js"></script>	
         <script type="text/javascript" src="js/category-bar.js"></script>	
         <script type="text/javascript" src="js/registry-controller.js"></script>
@@ -48,7 +49,7 @@ if (isset($_GET['logout'])) {
                 
                 <div class="hero__left">
                     <!-- TODO: dynamic content will be generated here -->
-                    <img src="images/logo2.svg" alt="Molnár Botond Fizika Szertára">
+                    <img src="assets/images/logo2.svg" alt="Molnár Botond Fizika Szertára">
                 </div>	
                 <div class="hero__mid">
                     <!-- TODO: dynamic content will be generated here -->
@@ -65,7 +66,7 @@ if (isset($_GET['logout'])) {
             </section>
 
             <nav class="category-bar" id="category-bar">
-                <!-- <div class="category-menu_label" id="category-menu_label" ></div> -->
+                
                 <div class="category-bar__inside" id="category-bar__inside">
                     
                     <ul class="category-bar__list horizontal-list" id="category-bar__list">
@@ -84,8 +85,8 @@ if (isset($_GET['logout'])) {
                     Bal oldalsáv
                 </div>	
                 <div class="topic-box__mid">
-                    <img src="images/laboratory_en.jpg">
-                    <img src="images/laboratory_en.jpg">
+                    <img src="assets/images/laboratory_en.jpg">
+                    <img src="assets/images/laboratory_en.jpg">
                 </div>	
                 <div class="topic-box__right">
                     Jobb oldalsáv
@@ -94,12 +95,12 @@ if (isset($_GET['logout'])) {
         
             <section class="content-box" id="content-box">
                 <!-- TODO: dynamic content will be generated here -->
-                <img src="images/laboratory_hu.jpg">
-                <img src="images/laboratory_hu.jpg">
-                <img src="images/laboratory_hu.jpg">
-                <img src="images/laboratory_hu.jpg">
-                <img src="images/laboratory_hu.jpg">
-                <img src="images/laboratory_hu.jpg">
+                <img src="assets/images/laboratory_hu.jpg">
+                <img src="assets/images/laboratory_hu.jpg">
+                <img src="assets/images/laboratory_hu.jpg">
+                <img src="assets/images/laboratory_hu.jpg">
+                <img src="assets/images/laboratory_hu.jpg">
+                <img src="assets/images/laboratory_hu.jpg">
             </section>
             
         </main>
