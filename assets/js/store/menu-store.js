@@ -81,6 +81,37 @@ const MenuStore = {
         this.index.subtopicsByTopic[topicId].push(subtopic);
     
     }
+    
+    // --- videosBySubtopic ---
+    this.index.videosBySubtopic = {};
+
+    this.subtopicVideos.forEach(rel => {
+    if (!this.index.videosBySubtopic[rel.subtopicId]) {
+        this.index.videosBySubtopic[rel.subtopicId] = [];
+    }
+    this.index.videosBySubtopic[rel.subtopicId].push(rel.videoId);
+    });
+
+    // --- documentsByVideo ---
+    this.index.documentsByVideo = {};
+
+    this.documentsVideos.forEach(rel => {
+    if (!this.index.documentsByVideo[rel.videoId]) {
+        this.index.documentsByVideo[rel.videoId] = [];
+    }
+    this.index.documentsByVideo[rel.videoId].push(rel.documentId);
+    });
+
+    // --- documentsBySubtopic ---
+    this.index.documentsBySubtopic = {};
+
+    this.subtopicDocuments.forEach(rel => {
+        if (!this.index.documentsBySubtopic[rel.subtopicId]) {
+            this.index.documentsBySubtopic[rel.subtopicId] = [];
+        }
+        this.index.documentsBySubtopic[rel.subtopicId].push(rel.documentId);
+    });
+
     },
 
     clear() {

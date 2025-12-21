@@ -37,14 +37,14 @@ if (isset($_GET['logout'])) {
         </header>
          
                         
-        <main class="main-content" id="main-content">
+        <main class="app-main main-content" id="app-main">
 
-            <div class="main-content__left">
+            <aside class="main-content__left left-rail" id="left-rail">
                     <!-- TODO: dynamic content will be generated here -->
                     <img src="assets/images/logo2.svg" alt="Molnár Botond Fizika Szertára">
-            </div>
+            </aside>
 
-            <div class="main-content__mid">
+            <section class="main-content__mid main-stage" id="main-stage">
             
                 <section class="hero" id="hero">
                                     
@@ -69,19 +69,19 @@ if (isset($_GET['logout'])) {
                     </div>
                 </nav>
 
-                <section class="topic-box" id="topic-box">
+                <section class="learning-stage" id="learning-stage">
                     <!-- TODO: dynamic content will be generated here -->
                     <img src="assets/images/laboratory_hu.jpg">
                     <img src="assets/images/laboratory_hu.jpg">
                     <img src="assets/images/laboratory_hu.jpg">
                 </section>
 
-            </div>    
+            </section>    
         
-            <div class="main-content__right">
+            <aside class="main-content__right right-rail" id="right-rail">
                     <!-- TODO: dynamic content will be generated here -->
                     Jobb oldalsáv
-            </div>		
+            </aside>		
                 
         </main>
 

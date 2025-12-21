@@ -1,5 +1,7 @@
 import MenuStore from '../store/menu-store.js';
 
+import { renderLesson } from './render-lesson.js';
+
 export function renderCategoryBar() {
     const container = document.getElementById('category-bar__list');
     container.innerHTML = '';
@@ -83,9 +85,9 @@ function createSubtopicItem(subtopic) {
     li.textContent = subtopic.name;
 
     li.onclick = () => {
-        console.log('Subtopic:', subtopic.id);
-        // később: lesson page
+    renderLesson(subtopic.id);
     };
+
 
     return li;
 }

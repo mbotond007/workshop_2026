@@ -203,13 +203,15 @@ body
 	max-height:150px;
 }
 
-.topic-box
+.learning-stage
 {
+	margin:100px auto;
+	padding:30px;
 	background:#9999ff;
 }
 
 
-.topic-box img
+.learning-stage img
 {
 	margin:20px auto;
 	max-width:80%;
