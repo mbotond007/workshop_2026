@@ -17,8 +17,8 @@ export async function loadCategories() {
 
     // normalizálás: DB → Store
     MenuStore.categories = json.data.map(row => ({
-        id: row.category_id,
+        id: Number(row.category_id),
         name: row.category_name_hu,
-        sortOrder: row.sort_order
+        sortOrder: Number(row.sort_order)
     }));
 }

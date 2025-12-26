@@ -10,7 +10,7 @@ import { loadVideos } from './api/load-videos.js';
 import { loadSubtopicVideos } from './api/load-subtopic-videos.js';
 import { loadDocumentsVideos } from './api/load-documents-videos.js';
 import { loadSubtopicDocuments } from './api/load-subtopic-documents.js';
-
+import { validateNormalizedStore } from './utils/validate-normailzed-store.js';
 
 async function initApp() {
     try {
@@ -26,7 +26,9 @@ async function initApp() {
         await loadSubtopicDocuments();
         await loadSubtopicVideos();
         await loadDocumentsVideos();
-       
+        
+        // Validate normalized store
+        await validateNormalizedStore(MenuStore);
         
        
         //console.log('Documents by video:', MenuStore.index.documentsByVideo);
@@ -41,3 +43,4 @@ async function initApp() {
 }
 
 initApp();
+validateNormalizedStore(MenuStore);

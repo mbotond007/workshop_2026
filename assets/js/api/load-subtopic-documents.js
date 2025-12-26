@@ -16,7 +16,7 @@ export async function loadSubtopicDocuments() {
     }
 
     MenuStore.subtopicDocuments = json.data.map(row => ({
-        subtopicId: row.subtopic_id,
-        documentId: row.document_id
+        subtopicId: Number(row.subtopic_id),
+        documentId: Number(row.document_id)
     }));
 }

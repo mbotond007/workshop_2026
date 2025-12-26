@@ -16,9 +16,9 @@ export async function loadSubtopics() {
     }
 
     MenuStore.subtopics = json.data.map(row => ({
-        id: row.subtopic_id,
-        topicId: row.topic_id,
+        id: Number(row.subtopic_id),
+        topicId: Number(row.topic_id),
         name: row.subtopic_name_hu,
-        sortOrder: row.sort_order
+        sortOrder: Number(row.sort_order)
     }));
 }

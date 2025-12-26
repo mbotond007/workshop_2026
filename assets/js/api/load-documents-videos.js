@@ -16,7 +16,7 @@ export async function loadDocumentsVideos() {
     }
 
     MenuStore.documentsVideos = json.data.map(row => ({
-        videoId: row.video_id,
-        documentId: row.document_id
+        videoId: Number(row.video_id),
+        documentId: Number(row.document_id)
     }));
 }

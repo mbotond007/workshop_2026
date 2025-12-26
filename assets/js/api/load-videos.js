@@ -16,11 +16,11 @@ export async function loadVideos() {
     }
 
     MenuStore.videos = json.data.map(row => ({
-        id: row.video_id,
+        id: Number(row.video_id),
         title: row.video_title,
         description: row.description,
         youtubeId: row.youtube_id,
-        duration: row.duration_ms,
+        duration: Number(row.duration_ms),
         publishedAt: row.published_date
     }));
 }

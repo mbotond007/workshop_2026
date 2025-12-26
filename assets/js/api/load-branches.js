@@ -17,9 +17,9 @@ export async function loadBranches() {
 
     // normalizálás: DB → Store
     MenuStore.branches = json.data.map(row => ({
-        id: row.branch_id,
-        categoryId: row.category_id,
+        id: Number(row.branch_id),
+        categoryId: Number(row.category_id),
         name: row.branch_name_hu,
-        sortOrder: row.sort_order
+        sortOrder: Number(row.sort_order)
     }));
 }

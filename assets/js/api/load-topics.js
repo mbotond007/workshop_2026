@@ -16,10 +16,10 @@ export async function loadTopics() {
     }
 
     MenuStore.topics = json.data.map(row => ({
-        id: row.topic_id,
-        branchId: row.branch_id,
+        id: Number(row.topic_id),
+        branchId: Number(row.branch_id),
         name: row.topic_name_hu,
         hasSubtopic: Number(row.has_subtopic),
-        sortOrder: row.sort_order
+        sortOrder: Number(row.sort_order)
     }));
 }

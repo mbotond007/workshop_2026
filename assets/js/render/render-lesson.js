@@ -44,26 +44,47 @@ export function renderLesson(subtopicId) {
     videoList.className = 'lesson__videos';
 
     const videoIds =
-        MenuStore.index.videosBySubtopic?.[subtopicId] || [];
+    MenuStore.index.videosBySubtopic?.[subtopicId] || [];
 
-    if (videoIds.length === 0) {
+    // Video objektumok összegyűjtése
+    const lessonVideos = videoIds
+        .map(videoId => MenuStore.videos.find(v => Number(v.id) === Number(videoId)))
+        .filter(Boolean);
+
+    // Rendezés curriculum_order szerint
+    lessonVideos.sort((a, b) => {
+        const ao = a.curriculum_order ?? null;
+        const bo = b.curriculum_order ?? null;
+
+        // mindkettőnek van order → számsorrend
+        if (ao !== null && bo !== null) return Number(ao) - Number(bo);
+
+        // csak A-nak van → A előre
+        if (ao !== null && bo === null) return -1;
+
+        // csak B-nek van → B előre
+        if (ao === null && bo !== null) return 1;
+
+        // egyiknek sincs → stabil fallback (cím szerint)
+        return String(a.title || '').localeCompare(String(b.title || ''), 'hu');
+    });
+
+    if (lessonVideos.length === 0) {
         const empty = document.createElement('p');
         empty.textContent = 'Ehhez a leckéhez nem tartozik videó.';
         videoList.appendChild(empty);
     } else {
-        videoIds.forEach(videoId => {
-            const videoData =
-                MenuStore.videos.find(v => v.id === videoId);
-            if (!videoData) return;
+        lessonVideos.forEach(videoData => {
+            const videoId = Number(videoData.id);
 
             const video = new Video(videoData, {
-                documents:
-                    MenuStore.index.documentsByVideo?.[videoId] || []
+                documents: MenuStore.index.documentsByVideo?.[videoId] || []
             });
 
             videoList.appendChild(video.renderCard());
         });
     }
+
 
     videosSection.appendChild(videoList);
     content.appendChild(videosSection);

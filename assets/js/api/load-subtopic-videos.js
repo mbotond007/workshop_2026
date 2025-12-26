@@ -16,7 +16,7 @@ export async function loadSubtopicVideos() {
     }
 
     MenuStore.subtopicVideos = json.data.map(row => ({
-        subtopicId: row.subtopic_id,
-        videoId: row.video_id
+        subtopicId: Number(row.subtopic_id),
+        videoId: Number(row.video_id)
     }));
 }

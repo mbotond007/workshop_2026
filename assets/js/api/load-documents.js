@@ -18,7 +18,7 @@ export async function loadDocuments() {
     const DOCUMENT_BASE_URL = './';
 
     MenuStore.documents = json.data.map(row => ({
-        id: row.document_id,
+        id: Number(row.document_id),
         title: row.title_hu,
         type: row.document_type,
         path: row.file_url,
