@@ -168,3 +168,50 @@ function renderDocumentItem(doc) {
     li.appendChild(link);
     return li;
 }
+
+export function renderDirectTopic(topicId) {
+  const stage = document.getElementById("learning-stage");
+  stage.innerHTML = "";
+
+  const topic = MenuStore.topics.find(t => t.id === topicId);
+
+  const section = document.createElement("section");
+  section.className = "lesson";
+
+  const header = document.createElement("header");
+  header.className = "lesson__header";
+
+  const title = document.createElement("h1");
+  title.textContent = topic?.name || `Topic #${topicId}`;
+
+  header.appendChild(title);
+  section.appendChild(header);
+
+  const docsSection = document.createElement("section");
+  docsSection.className = "lesson__section lesson__section--documents";
+
+  const docsTitle = document.createElement("h2");
+  docsTitle.textContent = "Tananyagok";
+  docsSection.appendChild(docsTitle);
+
+  const docIds = MenuStore.index.documentsByTopic?.[topicId] || [];
+
+  if (docIds.length === 0) {
+    const empty = document.createElement("p");
+    empty.textContent = "Ehhez a témához nincs külön tananyag.";
+    docsSection.appendChild(empty);
+  } else {
+    const ul = document.createElement("ul");
+    ul.className = "document-list";
+
+    docIds.forEach(docId => {
+      const doc = MenuStore.documents.find(d => d.id === Number(docId));
+      if (doc) ul.appendChild(renderDocumentItem(doc));
+    });
+
+    docsSection.appendChild(ul);
+  }
+
+  section.appendChild(docsSection);
+  stage.appendChild(section);
+}

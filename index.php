@@ -20,7 +20,8 @@ if (isset($_GET['logout'])) {
      
         <meta charset="utf-8"> 
         
-        <link rel="stylesheet" type="text/css" href="assets/css/workshop.css">
+        <!--<link rel="stylesheet" type="text/css" href="assets/css/workshop.css">-->
+        <link rel="stylesheet" type="text/css" href="assets/css/workshop_clean.css">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 

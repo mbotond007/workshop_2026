@@ -217,4 +217,86 @@ body
 	max-width:80%;
 }
 
+/* collapsed panels */
+.is-collapsed { display: none; }
+
+/* button alap */
+.category-bar__category-btn,
+.category-bar__topic-btn {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  width: 100%;
+}
+
+/* subtopic link */
+.category-bar__subtopic-link 
+{
+	display: block;
+	padding: 0.35rem 0.75rem; 
+}
+
+/* A category item legyen pozicionálási kontextus */
+.category-bar__category {
+  position: relative;
+}
+
+/* Panel ne tolja le a sávot, hanem lebegjen alatta */
+.category-bar__panel {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 2000;
+
+  width: min(560px, 92vw);
+  background: white;        /* később theme */
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 10px;
+
+  max-height: 70vh;
+  overflow: auto;
+
+  padding: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+/* collapsed marad */
+.is-collapsed { display: none; }
+
+
+.category-bar__branch-block {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.category-bar__branch-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.5rem;
+  opacity: 0.85;
+  /* opcionális: sticky branch header a panel scrollján belül */
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.category-bar__topic-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.25rem 0;
+}
+
+.category-bar__topic-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+}
+
+.category-bar__topic-btn:hover {
+  background: rgba(0,0,0,0.06);
+}
+
 

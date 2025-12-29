@@ -11,6 +11,9 @@ import { loadSubtopicVideos } from './api/load-subtopic-videos.js';
 import { loadDocumentsVideos } from './api/load-documents-videos.js';
 import { loadSubtopicDocuments } from './api/load-subtopic-documents.js';
 import { validateNormalizedStore } from './utils/validate-normailzed-store.js';
+import { initCategoryBarEvents } from "./ui/category-bar-events.js";
+import { initRouter } from "./ui/router.js";
+import { loadTopicDocuments } from './api/load-topic-documents.js';
 
 async function initApp() {
     try {
@@ -26,6 +29,11 @@ async function initApp() {
         await loadSubtopicDocuments();
         await loadSubtopicVideos();
         await loadDocumentsVideos();
+        await loadTopicDocuments();
+
+        // Initialize UI components
+        await initCategoryBarEvents();
+        await initRouter();
         
         // Validate normalized store
         await validateNormalizedStore(MenuStore);

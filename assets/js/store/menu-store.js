@@ -112,6 +112,17 @@ const MenuStore = {
         this.index.documentsBySubtopic[rel.subtopicId].push(rel.documentId);
     });
 
+    // --- documentsByTopic ---
+    this.index.documentsByTopic = {};
+
+    this.topicDocuments.forEach(rel => {
+    if (!this.index.documentsByTopic[rel.topicId]) {
+        this.index.documentsByTopic[rel.topicId] = [];
+    }
+    this.index.documentsByTopic[rel.topicId].push(rel.documentId);
+    });
+
+
     },
 
     clear() {

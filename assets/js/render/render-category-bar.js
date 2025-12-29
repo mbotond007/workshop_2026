@@ -1,93 +1,120 @@
-import MenuStore from '../store/menu-store.js';
-
-import { renderLesson } from './render-lesson.js';
+// assets/js/render/render-category-bar.js
+import MenuStore from "../store/menu-store.js";
+import { renderLesson } from "./render-lesson.js";
 
 export function renderCategoryBar() {
-    const container = document.getElementById('category-bar__list');
-    container.innerHTML = '';
+  const container = document.getElementById("category-bar__list");
+  container.innerHTML = "";
 
-    for (const category of MenuStore.categories) {
-        const categoryItem = createCategoryItem(category);
-        container.appendChild(categoryItem);
-    }
+  for (const category of MenuStore.categories) {
+    container.appendChild(createCategoryItem(category));
+  }
 }
 
 function createCategoryItem(category) {
-    const li = document.createElement('li');
-    li.className = 'category-bar__category';
-    li.textContent = category.name;
+  const li = document.createElement("li");
+  li.className = "category-bar__category";
+  li.dataset.categoryId = String(category.id);
 
-    const branchList = document.createElement('ul');
-    branchList.className = 'category-bar__branch-list';
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "category-bar__category-btn";
+  btn.textContent = category.name;
+  btn.dataset.action = "toggle-category";
+  btn.dataset.categoryId = String(category.id);
+  btn.setAttribute("aria-expanded", "false");
 
-    const branches =
-        MenuStore.index.branchesByCategory[category.id] || [];
+  const panel = document.createElement("div");
+  panel.className = "category-bar__panel is-collapsed";
+  panel.dataset.categoryPanel = String(category.id);
 
-    for (const branch of branches) {
-        branchList.appendChild(createBranchItem(branch));
-    }
+  // Branch + topic lista (branch nem kattintható)
+  const branches = MenuStore.index.branchesByCategory[category.id] || [];
+  for (const branch of branches) {
+    panel.appendChild(createBranchBlock(branch));
+  }
 
-    li.appendChild(branchList);
-    return li;
+  li.appendChild(btn);
+  document.getElementById("category-bar__inside").appendChild(panel);
+  //li.appendChild(panel);
+  return li;
 }
 
-function createBranchItem(branch) {
-    const li = document.createElement('li');
-    li.className = 'category-bar__branch';
-    li.textContent = branch.name;
+function createBranchBlock(branch) {
+  const section = document.createElement("section");
+  section.className = "category-bar__branch-block";
 
-    const topicList = document.createElement('ul');
-    topicList.className = 'category-bar__topic-list';
+  const title = document.createElement("div");
+  title.className = "category-bar__branch-title";
+  title.textContent = branch.name; // nem kattintható
 
-    const topics =
-        MenuStore.index.topicsByBranch[branch.id] || [];
+  const list = document.createElement("ul");
+  list.className = "category-bar__topic-list";
 
-    for (const topic of topics) {
-        topicList.appendChild(createTopicItem(topic));
-    }
+  const topics = MenuStore.index.topicsByBranch[branch.id] || [];
+  for (const topic of topics) {
+    list.appendChild(createTopicItem(topic));
+  }
 
-    li.appendChild(topicList);
-    return li;
+  section.appendChild(title);
+  section.appendChild(list);
+  return section;
 }
 
 function createTopicItem(topic) {
-    const li = document.createElement('li');
-    li.className = 'category-bar__topic';
-    li.textContent = topic.name;
+  const li = document.createElement("li");
+  li.className = "category-bar__topic";
 
-    if (topic.hasSubtopic === 1) {
-        const subtopicList = document.createElement('ul');
-        subtopicList.className = 'category-bar__subtopic-list';
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "category-bar__topic-btn";
+  btn.textContent = topic.name;
+  btn.dataset.topicId = String(topic.id);
 
-        const subtopics =
-            MenuStore.index.subtopicsByTopic[topic.id] || [];
+  if (topic.hasSubtopic === 1) {
+    btn.dataset.action = "toggle-topic";
 
-        for (const subtopic of subtopics) {
-            subtopicList.appendChild(createSubtopicItem(subtopic));
-        }
+    btn.setAttribute("aria-expanded", "false");
 
-        li.appendChild(subtopicList);
+    const subList = document.createElement("ul");
+    subList.className = "category-bar__subtopic-list is-collapsed";
+    subList.dataset.subtopicPanel = String(topic.id);
 
-    } else {
-        li.classList.add('category-bar__topic--direct');
-        li.onclick = () => {
-            console.log('Direct topic:', topic.id);
-            // később: topic_documents
-        };
+    const subtopics = MenuStore.index.subtopicsByTopic[topic.id] || [];
+    for (const subtopic of subtopics) {
+      subList.appendChild(createSubtopicItem(subtopic));
     }
 
-    return li;
+    li.appendChild(btn);
+    li.appendChild(subList);
+  } else {
+    // Direct topic (topic_documents)
+    btn.dataset.action = "open-direct-topic";
+    li.classList.add("category-bar__topic--direct");
+    li.appendChild(btn);
+  }
+
+  return li;
 }
 
 function createSubtopicItem(subtopic) {
-    const li = document.createElement('li');
-    li.className = 'category-bar__subtopic';
-    li.textContent = subtopic.name;
+  const li = document.createElement("li");
+  li.className = "category-bar__subtopic";
 
-    li.onclick = () => {
-    renderLesson(subtopic.id);
-    };
+  const a = document.createElement("a");
+  a.className = "category-bar__subtopic-link";
+  a.textContent = subtopic.name;
 
+  // Hash routing: nincs reload, SPA marad
+  a.href = `#/lesson/${subtopic.id}`;
+  a.dataset.action = "open-subtopic";
+  a.dataset.subtopicId = String(subtopic.id);
 
-    return li;
+  li.appendChild(a);
+  return li;
+}
+
+// (opcionális) export, ha a routerből is hívnád
+export function openSubtopic(subtopicId) {
+  renderLesson(Number(subtopicId));
 }
