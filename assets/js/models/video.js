@@ -20,12 +20,26 @@ export default class Video {
         this.isOpen = false;
     }
 
+    // --- static UI state ---
+    static openCardEl = null;
+    static openVideoInstance = null;
+
+
     /* ---------- UI actions ---------- */
 
-    open() {
-        this.isOpen = true;
-        this.renderDetails();
+    open(cardEl) {
+    // zárd a korábban nyitottat, ha másik
+    if (Video.openCardEl && Video.openCardEl !== cardEl && Video.openVideoInstance) {
+        Video.openVideoInstance.close();
     }
+
+    this.isOpen = true;
+    this.renderDetailsInCard(cardEl);
+
+    Video.openCardEl = cardEl;
+    Video.openVideoInstance = this;
+    }
+
 
     close() {
         this.isOpen = false;
@@ -86,8 +100,11 @@ export default class Video {
         card.appendChild(docsHint);
     }
 
+    //--- adat attribútumok ---//
+    card.dataset.videoId = String(this.id);
+
     /* --- kártya kattintás → details --- */
-    card.onclick = () => this.open();
+    card.onclick = () => this.open(card);
 
     return card;
 }
@@ -116,6 +133,8 @@ export default class Video {
         return card;
     }
 */
+
+/*
 renderDetails() {
 
     console.log('VIDEO DOC IDS:', this.documents);
@@ -129,7 +148,7 @@ renderDetails() {
         document.getElementById('learning-stage').appendChild(panel);
     }
 
-    /* --- alap struktúra --- */
+    /* --- alap struktúra --- 
     panel.innerHTML = `
         <button class="video-details__close">✕</button>
 
@@ -152,7 +171,7 @@ renderDetails() {
         </div>
     `;
 
-    /* --- dokumentumok feltöltése --- */
+    /* --- dokumentumok feltöltése --- 
     const docIds = this.documents || [];
     const list = panel.querySelector('.video-details__documents-list');
     const docsSection = panel.querySelector('.video-details__documents');
@@ -182,7 +201,7 @@ renderDetails() {
         docsSection.style.display = 'none';
     }
 
-    /* --- bezárás --- */
+    /* --- bezárás --- 
     panel.querySelector('.video-details__close').onclick = () => this.close();
 }
 
@@ -192,4 +211,82 @@ renderDetails() {
         const panel = document.getElementById('video-details-panel');
         if (panel) panel.remove();
     }
+*/
+
+renderDetailsInCard(card) {
+  // mentsd el az eredeti kártya UI-t (egyszer)
+  if (!card.dataset.originalHtml) {
+    card.dataset.originalHtml = card.innerHTML;
+  }
+
+  card.classList.add('video-card--open');
+
+  card.innerHTML = `
+    <div class="video-details__top">
+      <div class="video-details__title">${this.title}</div>
+      <button type="button" class="video-details__close">✕</button>
+    </div>
+
+    <div class="video-details__player">
+      <iframe
+        src="https://www.youtube.com/embed/${this.youtubeId}"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <section class="video-details__documents">
+      <h3>Kapcsolódó anyagok</h3>
+      <ul class="video-details__documents-list"></ul>
+    </section>
+  `;
+
+  // dokumentumok feltöltése
+    const docIds = this.documents || [];
+    const list = card.querySelector('.video-details__documents-list');
+    const docsSection = card.querySelector('.video-details__documents');
+
+    if (docIds.length > 0 && MenuStore.documents) {
+        docIds.forEach(docId => {
+        const doc = MenuStore.documents.find(d => Number(d.id) === Number(docId));
+        if (!doc) return;
+
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+
+        a.href = doc.url || doc.path;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = doc.title;
+
+        li.appendChild(a);
+        list.appendChild(li);
+        });
+        } else {
+            docsSection.style.display = 'none';
+        }
+
+    // X gomb
+    card.querySelector('.video-details__close').onclick = (e) => {
+        e.stopPropagation();
+        this.close();
+    };
+
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    }
+
+    close() {
+    this.isOpen = false;
+
+    if (Video.openCardEl && Video.openCardEl.dataset.originalHtml) {
+        Video.openCardEl.innerHTML = Video.openCardEl.dataset.originalHtml;
+        Video.openCardEl.classList.remove('video-card--open');
+    }
+
+    Video.openCardEl = null;
+    Video.openVideoInstance = null;
+    }
+
+
 }

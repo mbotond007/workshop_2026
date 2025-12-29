@@ -91,25 +91,30 @@ function toggleCategory({ root, panelHost, categoryId, btnEl }) {
 }
 
 
-function toggleTopic(topicId) {
-  const panel = document.querySelector(`[data-subtopic-panel="${topicId}"]`);
-  const btn = document.querySelector(
+function toggleTopic(topicId, panelHost = document) {
+  const panel = panelHost.querySelector(`[data-subtopic-panel="${topicId}"]`);
+  const btn = panelHost.querySelector(
     `[data-action="toggle-topic"][data-topic-id="${topicId}"]`
   );
 
-  if (!panel || !btn) {
-    console.warn("toggleTopic: missing panel or btn", { topicId, panel, btn });
-    return;
-  }
+  if (!panel || !btn) return;
 
-  const isCollapsed = panel.classList.contains("is-collapsed");
+  // Megjegyezzük, hogy most nyitva volt-e
+  const wasOpen = !panel.classList.contains("is-collapsed");
 
-  if (isCollapsed) {
+  // 1) Zárjunk be MINDENT (accordion)
+  panelHost.querySelectorAll(".category-bar__subtopic-list")
+    .forEach(p => p.classList.add("is-collapsed"));
+
+  panelHost.querySelectorAll(`[data-action="toggle-topic"]`)
+    .forEach(b => b.setAttribute("aria-expanded", "false"));
+
+  // 2) Ha ez nem volt nyitva, akkor nyissuk ki (ha nyitva volt, marad zárva)
+  if (!wasOpen) {
     panel.classList.remove("is-collapsed");
     btn.setAttribute("aria-expanded", "true");
-  } else {
-    panel.classList.add("is-collapsed");
-    btn.setAttribute("aria-expanded", "false");
+     // ✅ fókusz: a kinyílt lista kerüljön a viewport közepére
+    panel.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 }
 
