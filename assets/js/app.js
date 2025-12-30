@@ -31,19 +31,23 @@ async function initApp() {
         await loadDocumentsVideos();
         await loadTopicDocuments();
 
-        // Initialize UI components
-        await initCategoryBarEvents();
-        await initRouter();
+        // Build indexes and render category bar
+        MenuStore.buildIndexes();
+        renderCategoryBar();
         
         // Validate normalized store
         await validateNormalizedStore(MenuStore);
         
+        // Initialize UI components
+        initCategoryBarEvents();
+        initRouter();
        
-        //console.log('Documents by video:', MenuStore.index.documentsByVideo);
+        console.log('Documents by video:', MenuStore.index.documentsByVideo);
         console.log('Documents by subtopic:', MenuStore.index.documentsBySubtopic);
+        console.log('Videos by subtopic:', MenuStore.index.videosBySubtopic);
+        console.log('Topic documents:', MenuStore.index.topicDocuments);
 
-        MenuStore.buildIndexes();
-        renderCategoryBar();
+        
 
     } catch (error) {
         console.error('App init failed:', error);
@@ -51,4 +55,3 @@ async function initApp() {
 }
 
 initApp();
-validateNormalizedStore(MenuStore);

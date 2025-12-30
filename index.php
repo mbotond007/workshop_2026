@@ -20,8 +20,19 @@ if (isset($_GET['logout'])) {
      
         <meta charset="utf-8"> 
         
-        <!--<link rel="stylesheet" type="text/css" href="assets/css/workshop.css">-->
+        <link rel="stylesheet" href="./assets/css/00-tokens-base.css">
+        <link rel="stylesheet" href="./assets/css/30-layout.css">
+        <link rel="stylesheet" href="./assets/css/10-header.css">
+        <link rel="stylesheet" href="./assets/css/20-category-bar.css">
+        <link rel="stylesheet" href="./assets/css/40-lesson.css">
+        <link rel="stylesheet" href="./assets/css/50-footer.css">
+        <link rel="stylesheet" href="./assets/css/90-responsive.css">
+        <!--
         <link rel="stylesheet" type="text/css" href="assets/css/workshop_clean.css">
+
+        -->
+        
+
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 

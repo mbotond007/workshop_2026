@@ -28,6 +28,10 @@ export default class Video {
     /* ---------- UI actions ---------- */
 
     open(cardEl) {
+
+    // debugging    
+    console.count("video open");
+        
     // zárd a korábban nyitottat, ha másik
     if (Video.openCardEl && Video.openCardEl !== cardEl && Video.openVideoInstance) {
         Video.openVideoInstance.close();
@@ -64,6 +68,8 @@ export default class Video {
 
     const card = document.createElement('div');
     card.className = 'video-card';
+    card.dataset.videoId = String(this.id);
+
 
     /* --- fő tartalom --- */
     const title = document.createElement('h3');
@@ -89,12 +95,12 @@ export default class Video {
     if (docCount > 0) {
         const docsHint = document.createElement('div');
         docsHint.className = 'video-card__documents-hint';
-        docsHint.textContent = `📎 Kapcsolódó anyag (${docCount})`;
+        docsHint.textContent = `📎 Van kapcsolódó diasor (${docCount} db)`;
 
         // ugyanazt csinálja, mint a kártya megnyitása
         docsHint.onclick = (e) => {
             e.stopPropagation();
-            this.open();
+            this.open(card);
         };
 
         card.appendChild(docsHint);
@@ -104,114 +110,15 @@ export default class Video {
     card.dataset.videoId = String(this.id);
 
     /* --- kártya kattintás → details --- */
-    card.onclick = () => this.open(card);
+    card.onclick = () => {
+    if (card.classList.contains("video-card--open")) return;
+    this.open(card);
+    };
+
 
     return card;
 }
 
-
-/* old code
-
-    renderCard() {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-
-        card.innerHTML = `
-            <div class="video-card__thumb">
-                <span class="video-card__icon">🎥</span>
-            </div>
-            <div class="video-card__content">
-                <h3 class="video-card__title">${this.title}</h3>
-                <div class="video-card__meta">
-                 ⏱ ${formatDuration(this.duration)}
-                </div>
-
-            </div>
-        `;
-
-        card.onclick = () => this.toggle();
-        return card;
-    }
-*/
-
-/*
-renderDetails() {
-
-    console.log('VIDEO DOC IDS:', this.documents);
-
-    let panel = document.getElementById('video-details-panel');
-
-    if (!panel) {
-        panel = document.createElement('div');
-        panel.id = 'video-details-panel';
-        panel.className = 'video-details';
-        document.getElementById('learning-stage').appendChild(panel);
-    }
-
-    /* --- alap struktúra --- 
-    panel.innerHTML = `
-        <button class="video-details__close">✕</button>
-
-        <div class="video-details__content">
-            <h2>${this.title}</h2>
-            <p>${this.description || ''}</p>
-
-            <div class="video-details__player">
-                <iframe 
-                    src="https://www.youtube.com/embed/${this.youtubeId}"
-                    frameborder="0"
-                    allowfullscreen
-                ></iframe>
-            </div>
-
-            <section class="video-details__documents">
-                <h3>Kapcsolódó anyagok</h3>
-                <ul class="video-details__documents-list"></ul>
-            </section>
-        </div>
-    `;
-
-    /* --- dokumentumok feltöltése --- 
-    const docIds = this.documents || [];
-    const list = panel.querySelector('.video-details__documents-list');
-    const docsSection = panel.querySelector('.video-details__documents');
-
-    if (docIds.length > 0 && MenuStore.documents) {
-
-        docIds.forEach(docId => {
-            const doc = MenuStore.documents.find(
-                d => Number(d.id) === Number(docId)
-            );
-            if (!doc) return;
-
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-
-            a.href = doc.url || doc.path;
-            a.target = '_blank';
-            a.rel = 'noopener';
-            a.textContent = doc.title;
-
-            li.appendChild(a);
-            list.appendChild(li);
-        });
-
-    } else {
-        // ha nincs dokumentum, a szekciót elrejthetjük
-        docsSection.style.display = 'none';
-    }
-
-    /* --- bezárás --- 
-    panel.querySelector('.video-details__close').onclick = () => this.close();
-}
-
-
-
-    removeDetails() {
-        const panel = document.getElementById('video-details-panel');
-        if (panel) panel.remove();
-    }
-*/
 
 renderDetailsInCard(card) {
   // mentsd el az eredeti kártya UI-t (egyszer)
@@ -223,8 +130,11 @@ renderDetailsInCard(card) {
 
   card.innerHTML = `
     <div class="video-details__top">
-      <div class="video-details__title">${this.title}</div>
-      <button type="button" class="video-details__close">✕</button>
+        <div class="video-details__title">${this.title}</div>
+        <div class="video-details__actions">
+        <button type="button" class="video-details__copy-link" title="Videó link másolása">🔗</button>
+        <button type="button" class="video-details__close">✕</button>
+        </div>
     </div>
 
     <div class="video-details__player">
@@ -252,12 +162,16 @@ renderDetailsInCard(card) {
         if (!doc) return;
 
         const li = document.createElement('li');
+        li.className = "document-item";
+        
         const a = document.createElement('a');
 
         a.href = doc.url || doc.path;
         a.target = '_blank';
         a.rel = 'noopener';
         a.textContent = doc.title;
+        
+
 
         li.appendChild(a);
         list.appendChild(li);
@@ -271,6 +185,13 @@ renderDetailsInCard(card) {
         e.stopPropagation();
         this.close();
     };
+
+    // Link másolás
+    card.querySelector(".video-details__copy-link").onclick = async (e) => {
+    e.stopPropagation();
+    await copyVideoDeepLink(this.id);
+    };
+
 
     card.scrollIntoView({ behavior: "smooth", block: "center" });
 
@@ -289,4 +210,34 @@ renderDetailsInCard(card) {
     }
 
 
+}
+
+// Helper to get current subtopicId from URL hash
+
+function getCurrentSubtopicIdFromHash() {
+  const h = window.location.hash || "";
+  const m = h.match(/^#\/lesson\/(\d+)/);
+  return m ? Number(m[1]) : null;
+}
+
+async function copyVideoDeepLink(videoId) {
+  const subtopicId = getCurrentSubtopicIdFromHash();
+
+  if (!subtopicId) {
+    console.warn("Link másolás: nem lesson nézetben vagy (#/lesson/:id hiányzik).");
+    return;
+  }
+
+  const url =
+    window.location.origin +
+    window.location.pathname +
+    `#/lesson/${subtopicId}?video=${videoId}`;
+
+  try {
+    await navigator.clipboard.writeText(url);
+    console.log("Videó link vágólapra másolva:", url);
+  } catch (err) {
+    // fallback: működik akkor is, ha clipboard tiltott
+    window.prompt("Másold ki ezt a linket:", url);
+  }
 }

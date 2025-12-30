@@ -62,6 +62,10 @@ function createBranchBlock(branch) {
 }
 
 function createTopicItem(topic) {
+
+  //duplicate count for debugging
+  console.count("category-bar click handler");
+
   const li = document.createElement("li");
   li.className = "category-bar__topic";
 

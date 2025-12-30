@@ -289,6 +289,13 @@ button{ font: inherit; }
 .category-bar__topic-btn:hover{
   background: rgba(43,65,86,0.17);
 }
+/*escape gomb*/
+.category-bar__category-btn:focus-visible{
+  outline: 3px solid rgba(255,255,255,0.6);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
 
 .category-bar__topic-btn{
   position: relative;
@@ -323,26 +330,6 @@ button{ font: inherit; }
     box-shadow: 0 0 0 2px rgba(51,66,213,0.25);
   }
 }
-
-
-/* Erős aktív állapot: ARIA alapján 
-.category-bar__category-btn[aria-expanded="true"]{
-  background: rgba(255,255,255,0.28);
-  box-shadow:
-    inset 0 0 0 2px rgba(255,255,255,0.38),
-    0 8px 18px rgba(0,0,0,0.22);
-  transform: translateY(-1px);
-}*/
-
-/* Kis “jelzőcsík” alul (nagyon jól látszik) 
-.category-bar__category-btn[aria-expanded="true"]::after{
-  content:"";
-  display:block;
-  height: 3px;
-  margin-top: 6px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.85);
-}*/
 
 
 .category-bar__topic-btn:focus-visible{
@@ -482,6 +469,39 @@ button{ font: inherit; }
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.video-card__documents-hint{
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.video-card__documents-hint:hover{
+  background: rgba(51,66,213,0.08);
+}
+
+.video-details__actions{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.video-details__copy-link{
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+.video-details__copy-link:hover{
+  background: rgba(255,255,255,0.98);
 }
 
 .lesson__documents{

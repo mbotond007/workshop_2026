@@ -1,0 +1,43 @@
+/* =========================================================
+   Main content / hero / learning stage
+   ========================================================= */
+.main-content{
+  width: min(1100px, 92vw);
+  margin: 14px auto 80px auto;
+  padding: 16px;
+  background: var(--bg-surface-2);
+  border-radius: var(--radius-1);
+  min-height: 450px;
+
+  display:flex;
+  gap: var(--gap-3);
+}
+
+.main-content__left,
+.main-content__right{
+  width: clamp(120px, 14vw, 180px);
+  background: rgba(255,255,255,0.55);
+  border-radius: var(--radius-1);
+  padding: 10px;
+}
+
+.main-content__mid{
+  flex: 1 1 auto;
+  background: rgba(255,255,255,0.55);
+  border-radius: var(--radius-1);
+  padding: 10px;
+  min-width: 0;
+}
+
+.learning-stage{
+  margin: 18px auto;
+  padding: 18px;
+  background: rgba(153,153,255,0.25); /* keeps your vibe, less harsh */
+  border: 1px solid rgba(43,65,86,0.16);
+  border-radius: var(--radius-1);
+  padding-bottom: 90px;
+}
+.learning-stage img{
+  margin: 16px auto;
+  max-width: 92%;
+}

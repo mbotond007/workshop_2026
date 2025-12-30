@@ -1,0 +1,55 @@
+/* =========================================================
+   workshop.css (clean rebuild, single-file for testing)
+   - Keeps existing site structure + blue-ish palette
+   - Removes old hover-driven dropdown rules & redundancies
+   - Supports click-to-expand category bar with overlay panels
+   ========================================================= */
+
+/* ---------- Theme tokens ---------- */
+:root{
+  --bg-page: #ddedfc;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #e0ecff;
+
+  --brand-900: #2b4156;  /* category bar */
+  --brand-700: #3342d5;  /* link/button text */
+  --brand-200: #aabbdd;  /* borders */
+
+  --text-900: #0f1a24;
+  --text-700: #2b3b4c;
+
+  --shadow-1: 0 10px 30px rgba(0,0,0,0.18);
+  --radius-1: 8px;
+  --radius-2: 10px;
+
+  --gap-1: 8px;
+  --gap-2: 12px;
+  --gap-3: 16px;
+
+  --header-h: 64px;      /* approximate sticky header height */
+  --catbar-h: 48px;      /* approximate category bar height */
+}
+
+/* ---------- Base / reset-ish ---------- */
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+body{
+  margin:0;
+  padding:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-900);
+}
+img{ max-width: 100%; height: auto; display:block; }
+a{ color: inherit; text-decoration: none; }
+button{ font: inherit; }
+
+/* Utility */
+.is-collapsed{ display:none !important; }
+.sr-only{
+  position:absolute!important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);
+  white-space:nowrap;border:0;
+}
