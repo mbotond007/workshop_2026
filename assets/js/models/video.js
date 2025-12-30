@@ -70,11 +70,17 @@ export default class Video {
     card.className = 'video-card';
     card.dataset.videoId = String(this.id);
 
+    const top = document.createElement('div');
+    top.className = 'video-card__top';
 
     /* --- fő tartalom --- */
-    const title = document.createElement('h3');
+    const title = document.createElement('div');
     title.className = 'video-card__title';
     title.textContent = this.title;
+
+    const description = document.createElement('div');
+    description.className = 'video-card__description';
+    description.textContent = this.description;
 
     const meta = document.createElement('div');
     meta.className = 'video-card__meta';
@@ -83,8 +89,10 @@ export default class Video {
         meta.textContent = `⏱ ${this.formattedDuration || ''}`;
     }
 
-    card.appendChild(icon);
-    card.appendChild(title);
+    top.appendChild(icon);
+    top.appendChild(title);
+    card.appendChild(top);
+    card.appendChild(description);
     card.appendChild(meta);
 
     /* --- kapcsolódó anyag jelzés --- */

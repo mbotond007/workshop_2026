@@ -10,6 +10,17 @@
   cursor: pointer;
 }
 
+.video-card__top{
+  display:flex;
+  justify-content: center;
+}
+
+.video-card__title{
+  font-weight:800;
+  padding-left:30px;
+}
+
+
 /* Open state */
 .video-card--open{
   cursor: default;
@@ -28,6 +39,8 @@
 .video-details__title{
   font-weight: 800;
 }
+
+
 
 .video-details__close{
   cursor: pointer;
