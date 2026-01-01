@@ -14,7 +14,7 @@
 .site-header__inside{
   width: min(1100px, 92vw);
   display:flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items:center;
   gap: var(--gap-2);
 
@@ -63,3 +63,19 @@
 .site-header__search,
 .site-header__navbar,
 .site-header__donation{ background: transparent; }
+
+.site-header__nav{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.site-header__btn{
+  white-space: nowrap;
+}
+
+.site-header__logo-img{
+  height: 36px;
+  width: auto;
+  display: block;
+}

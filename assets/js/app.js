@@ -14,9 +14,23 @@ import { validateNormalizedStore } from './utils/validate-normailzed-store.js';
 import { initCategoryBarEvents } from "./ui/category-bar-events.js";
 import { initRouter } from "./ui/router.js";
 import { loadTopicDocuments } from './api/load-topic-documents.js';
+import { loadHeaderMenu } from "./api/load-header-menu.js";
+import { renderSiteHeader } from "./render/render-site-header.js";
+import { initSiteHeaderEvents } from "./ui/site-header-events.js";
 
 async function initApp() {
     try {
+        // 1) Header menu betöltése
+        await loadHeaderMenu();
+
+        // 2) Render header
+        renderSiteHeader();
+
+        // 3) Eseménykezelők (delegált)
+        initSiteHeaderEvents();
+
+       // 4) Kategória sáv és fő tartalom betöltése
+
         //load all entities
         await loadCategories();
         await loadBranches();

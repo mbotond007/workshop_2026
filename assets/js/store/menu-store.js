@@ -7,9 +7,10 @@ const MenuStore = {
     branches: [],
     topics: [],
     subtopics: [],
-
     documents: [],
     videos: [],
+    headerMenu: [],
+
 
     // --- relation tables ---
     topicDocuments: [],
