@@ -14,9 +14,11 @@ $sql = "
 $result = $connection->query($sql);
 
 if (!$result) {
+    // Egységesített hiba-kezelés: hibánál HTTP 500 kódot és JSON választ küldünk.
+    http_response_code(500);
     echo json_encode([
         "success" => false,
-        "error" => $connection->error
+        "error" => "Database query failed: " . $connection->error
     ]);
     exit;
 }
