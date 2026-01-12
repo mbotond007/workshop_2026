@@ -1,0 +1,71 @@
+PROJEKT ÁLLAPOT / KONVENCIÓK (Workshop 2026, SPA-s jelleg, vanilla JS + PHP + MySQL/MariaDB)
+
+Frontend architektúra kötelező szekvenciája: loader → store → render → initEvents.
+
+Állapotkezelés: MenuStore-alapú store (assets/js/store/menu-store.js).
+
+Egységes event kezelés: event delegation data-action attribútummal (nem direkt listener minden elemre).
+
+Routing: hash routing, pl. #/lesson/:id?video=:id (assets/js/ui/router.js).
+
+Külső JS library tilos.
+
+PHP loaderek kötelezőek: POST, mysqli_fetch_assoc, egységes JSON: { success, data }.
+
+Fejlesztési stílus: ha path/struktúra nem biztos → kommentben jelezni; nem találunk ki új konvenciókat, meglévő mintákhoz illesztünk; kód legyen olvasható, “hardcode-olható”.
+
+UI/UX alapelvek
+
+Fókuszált tanulási környezet; oldalsáv csak funkcióhoz kötötten, de erről még nincs végleges döntés.
+
+GenZ/GenA célközönség: “hover nincs”, menük kattintásosak.
+
+Lesson megjelenítés: video-card alapú, beágyazott előnézettel.
+
+JELENLEGI APP SZEKVENCIA (app.js)
+
+Induláskor header menü betöltés és render: loadHeaderMenu() → renderSiteHeader() → initSiteHeaderEvents().
+
+Utána tölti a tartalmi adatokat (categories/branches/topics/subtopics/videos/documents + relációk), majd renderCategoryBar() + init események + initRouter().
+
+MenuStore tartalmak (biztosan használt entitások)
+
+categories, branches, topics, subtopics, videos, documents, headerMenu.
+
+Vannak indexek / leképezések: pl. subtopicsByTopic, videosBySubtopic, documentsByVideo, documentsBySubtopic, documentsByTopic.
+
+HEADER MENU DB + LOGIKA
+
+DB tábla: header_menu (mezők közt: action, menu_type, sort_order, is_ready, header_name_hu/en, stb.).
+
+menu_type jelentése:
+
+general: mindig látszik
+
+outside: csak külső oldalon (pl. belépés, regisztráció)
+
+inside: csak belső oldalon (pl. kilépés)
+
+is_ready most még nem fontos (release után lesz értelme).
+
+header action-ok: go-home, open-search, open-sitemap, open-contact, open-login, open-register, logout.
+
+AKTUÁLIS FEJLESZTÉSI PRIORITÁSOK (site-header + site-map)
+
+go-home (logo) bekötése: “hard refresh” jelleg, hogy ne kelljen mindig ctrl+F5 teszteléshez.
+
+open-sitemap megvalósítása következőnek.
+
+open-search később.
+
+SITE-MAP DÖNTÉSEK / IRÁNY
+
+Nem végleges az oldalsáv stratégia; oktatási fókusz + mobil miatt az oldalsáv alapból fókuszromboló lehet.
+
+A site-map ne oldalsávban nyíljon, hanem inkább main területre illeszkedjen.
+
+A site-map tartalma: a category-bar teljes menurendszerének megjelenítése (category→branch→topic→subtopic, és van külön “Videók” gomb is a rendszerben).
+
+Nem redundáns a category-bar-ral: a site-map ne csak “kinyíló menü” legyen, hanem kattintásra közvetlen tartalom-render modell, ami akár “alsó listaszintig” megjelenít, és onnan tartalmat ad (közvetlen render, nem feltétlen route-olás).
+
+Hover nincs, minden kattintás alapú.

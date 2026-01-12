@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Dec 26. 11:08
+-- Létrehozás ideje: 2026. Jan 02. 13:12
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -702,28 +702,28 @@ INSERT INTO `glossary` (`glossary_id`, `term_name_hu`, `term_name_en`, `term_def
 
 CREATE TABLE `header_menu` (
   `header_menu_id` int(11) NOT NULL,
-  `position` int(11) NOT NULL,
+  `sort_order` int(11) NOT NULL,
   `header_class` varchar(50) NOT NULL,
   `header_div_id` varchar(50) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `is_ready` int(11) NOT NULL,
+  `action` varchar(50) NOT NULL,
+  `is_ready` tinyint(1) NOT NULL DEFAULT 1,
   `menu_type` varchar(10) NOT NULL,
   `header_name_hu` varchar(200) NOT NULL,
-  `hearder_name_en` varchar(200) NOT NULL
+  `header_name_en` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `header_menu`
 --
 
-INSERT INTO `header_menu` (`header_menu_id`, `position`, `header_class`, `header_div_id`, `type`, `is_ready`, `menu_type`, `header_name_hu`, `hearder_name_en`) VALUES
-(1, 1, 'site-header__logo', 'site-header__logo', 'logo', 1, 'general', 'logo2.svg', 'laboratory_en.jpg'),
-(2, 2, 'site-header_search', 'site-header_search', 'search_bar', 1, 'general', 'Téma kereső', 'Search topic'),
-(3, 3, 'site-header__navbar header-button', 'site-header__navbar', 'navbar', 1, 'general', 'Oldal felfedezése', 'Site-map'),
-(4, 4, 'header-button', 'contact-button', 'button', 1, 'general', 'Kapcsolat', 'Contact'),
-(5, 5, 'header-button', 'logout-button', 'button', 1, 'inside', 'Kilépés', 'Logout'),
-(6, 6, 'header-button', 'login-button', 'button', 1, 'outside', 'Belépés', 'Login'),
-(7, 7, 'header-button', 'reg-button', 'button', 1, 'outside', 'Regisztrálok', 'Registry');
+INSERT INTO `header_menu` (`header_menu_id`, `sort_order`, `header_class`, `header_div_id`, `action`, `is_ready`, `menu_type`, `header_name_hu`, `header_name_en`) VALUES
+(1, 1, 'site-header-logo', 'site-header-logo', 'go-home', 1, 'general', 'logo2.svg', 'laboratory_en.jpg'),
+(2, 2, 'site-header-search', 'site-header-search', 'open-search', 1, 'general', 'Téma kereső', 'Search topic'),
+(3, 3, 'site-map-button header-button', 'site-map-button', 'open-sitemap', 1, 'general', 'Oldal felfedezése', 'Site-map'),
+(4, 4, 'contact-button header-button', 'contact-button', 'open-contact', 1, 'general', 'Kapcsolat', 'Contact'),
+(5, 5, 'logout-button header-button', 'logout-button', 'logout', 1, 'inside', 'Kilépés', 'Logout'),
+(6, 6, 'login-button header-button', 'login-button', 'open-login', 1, 'outside', 'Belépés', 'Login'),
+(7, 7, 'reg-button header-button', 'reg-button', 'open-register', 1, 'outside', 'Regisztrálok', 'Registry');
 
 -- --------------------------------------------------------
 

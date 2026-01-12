@@ -10,9 +10,14 @@ export function initSiteHeaderEvents() {
 
     switch (action) {
       case "go-home":
-        // Most még “soft”: hash home.
-        // A "komoly refresh" (hard reset) a 2. lépésedben jön.
-        window.location.hash = "#/";
+        e.preventDefault();
+        // Hard reset a teszteléshez: teljes oldal újratöltés az index.php-ra.
+        // Relatív útvonal-robosztus: megtartja a jelenlegi mappa-szintet.
+        // Példa: /foo/index.php#/lesson/12 -> /foo/index.php
+        {
+          const basePath = window.location.pathname.replace(/\/[^/]*$/, "/");
+          window.location.href = basePath + "index.php";
+        }
         break;
 
       case "open-sitemap":

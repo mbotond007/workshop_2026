@@ -20,6 +20,7 @@ export async function loadDocuments() {
     MenuStore.documents = json.data.map(row => ({
         id: Number(row.document_id),
         title: row.title_hu,
+        description: row.description_hu,
         type: row.document_type,
         path: row.file_url,
         url: row.file_url.startsWith('http')

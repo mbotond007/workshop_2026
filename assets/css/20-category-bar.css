@@ -11,6 +11,9 @@
   margin-top: 6px;
 
   background: var(--brand-900);
+  
+  border-radius: 6px;
+  padding: 0px 6px;
 }
 
 .category-bar__inside{
@@ -52,7 +55,7 @@
   padding: 0;
   display:flex;
   align-items:center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 6px;
   width: 100%;
 }

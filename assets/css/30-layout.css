@@ -1,8 +1,12 @@
 /* =========================================================
    Main content / hero / learning stage
    ========================================================= */
+.hero__inside{
+	align-items:center;
+}
+
 .main-content{
-  width: min(1100px, 92vw);
+  width: min(1100px, 82vw);
   margin: 14px auto 80px auto;
   padding: 16px;
   background: var(--bg-surface-2);
@@ -40,4 +44,13 @@
 .learning-stage img{
   margin: 16px auto;
   max-width: 92%;
+}
+
+.left-rail{
+	display: none;
+}
+
+
+.right-rail{
+	display: none;
 }
