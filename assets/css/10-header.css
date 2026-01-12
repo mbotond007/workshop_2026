@@ -70,6 +70,32 @@
   align-items: center;
 }
 
+/* Search trigger (header "fake input") */
+.site-header__search{
+  display: flex;
+  align-items: center;
+}
+
+.site-header__search-input{
+  width: min(360px, 40vw);
+  padding: 6px 10px;
+  font-size: 16px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: #111;
+  cursor: text;
+}
+
+.site-header__search-input::placeholder{
+  color: rgba(0,0,0,0.55);
+}
+
+.site-header__search-input:focus-visible{
+  outline: 3px solid rgba(51,66,213,0.35);
+  outline-offset: 2px;
+}
+
 .site-header__btn{
   white-space: nowrap;
 }

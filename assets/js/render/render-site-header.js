@@ -19,6 +19,8 @@ function getLogoSrc(item) {
 }
 
 export function renderSiteHeader() {
+  const __headerMenu = (MenuStore.headerMenu || []).filter(it => Number(it.isReady ?? it.is_ready ?? 1) !== 0);
+
   const host = document.querySelector(".site-header");
   if (!host) return;
 
@@ -31,7 +33,7 @@ export function renderSiteHeader() {
   // Render előtt ürítjük (a header teljesen DB-vezérelt)
   inside.innerHTML = "";
 
-  const items = Array.isArray(MenuStore.headerMenu) ? MenuStore.headerMenu : [];
+  const items = Array.isArray(__headerMenu) ? __headerMenu : [];
 
   // Csak biztos ami biztos: sorrend
   const sorted = [...items].sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
@@ -60,6 +62,25 @@ export function renderSiteHeader() {
   sorted
     .filter(x => x.action !== "go-home")
     .forEach(item => {
+      // A keresés legyen "input jellegű" trigger a headerben (GenZ/GenA: inkább mező, mint felirat).
+      // Fontos: a tényleges keresés az overlayben történik, ez csak megnyitja azt.
+      if (item.action === "open-search") {
+        const wrap = document.createElement("div");
+        wrap.className = "site-header__search";
+
+        const input = document.createElement("input");
+        input.type = "search";
+        input.className = "site-header__search-input";
+        input.placeholder = "Keresés…";
+        input.setAttribute("aria-label", "Keresés");
+        input.readOnly = true;
+        input.dataset.action = "open-search";
+
+        wrap.appendChild(input);
+        nav.appendChild(wrap);
+        return;
+      }
+
       const btn = document.createElement("button");
       btn.type = "button";
 

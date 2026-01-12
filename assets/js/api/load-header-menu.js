@@ -17,6 +17,7 @@ export async function loadHeaderMenu() {
   MenuStore.headerMenu = json.data.map(row => ({
     id: Number(row.header_menu_id),
     sortOrder: Number(row.sort_order),
+    isReady: Number(row.is_ready),
     action: row.action,          // pl. "open-sitemap"
     menuType: row.menu_type,     // "general" | "outside" | "inside"
     nameHu: row.header_name_hu,

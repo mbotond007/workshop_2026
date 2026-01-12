@@ -25,7 +25,13 @@ export function initSiteHeaderEvents() {
         break;
 
       case "open-search":
-        console.log("TODO: open-search");
+        // Headerben a keresőmező csak trigger; a tényleges keresés overlayben.
+        // Lazy import: ne terhelje az app init-et, ha nem használják.
+        import("./search-overlay.js").then(({ openSearchOverlay }) => {
+          openSearchOverlay();
+        }).catch(err => {
+          console.error("open-search failed", err);
+        });
         break;
 
       case "open-contact":

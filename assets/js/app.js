@@ -17,6 +17,7 @@ import { loadTopicDocuments } from './api/load-topic-documents.js';
 import { loadHeaderMenu } from "./api/load-header-menu.js";
 import { renderSiteHeader } from "./render/render-site-header.js";
 import { initSiteHeaderEvents } from "./ui/site-header-events.js";
+import { initSearchOverlayEvents } from "./ui/search-overlay.js";
 
 async function initApp() {
     try {
@@ -28,6 +29,8 @@ async function initApp() {
 
         // 3) Eseménykezelők (delegált)
         initSiteHeaderEvents();
+        // Kereső overlay globális események (ESC, click delegation, input)
+        initSearchOverlayEvents();
 
        // 4) Kategória sáv és fő tartalom betöltése
 
