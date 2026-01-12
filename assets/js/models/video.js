@@ -171,12 +171,15 @@ renderDetailsInCard(card) {
 
         const li = document.createElement('li');
         li.className = "document-item";
+        // Deep link / search fókusz támogatás
+        li.dataset.docId = String(doc.id);
         
         const a = document.createElement('a');
 
         a.href = doc.url || doc.path;
         a.target = '_blank';
         a.rel = 'noopener';
+        a.dataset.docId = String(doc.id);
         a.textContent = doc.title;
         
 

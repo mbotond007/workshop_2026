@@ -158,11 +158,14 @@ content.appendChild(docsSection);
 function renderDocumentItem(doc) {
     const li = document.createElement('li');
     li.className = 'document-item';
+    // Deep link / search fókusz támogatás
+    li.dataset.docId = String(doc.id);
 
     const link = document.createElement('a');
     link.href = doc.url || doc.path;
     link.target = '_blank';
     link.rel = 'noopener';
+    link.dataset.docId = String(doc.id);
     link.textContent = doc.title || `Dokumentum #${doc.id}`;
 
     li.appendChild(link);

@@ -69,10 +69,26 @@ function renderResultsList(results, query) {
     `;
   }
 
-  const rows = results.map(r => {
+  // Csoportosítás típus szerint (UX: videók → leckék → témák → doksik → fogalmak)
+  const order = ["VIDEO", "SUBTOPIC", "TOPIC", "DOCUMENT", "GLOSSARY_TERM"];
+  const titles = {
+    VIDEO: "Videók",
+    SUBTOPIC: "Leckék",
+    TOPIC: "Témák",
+    DOCUMENT: "Doksik",
+    GLOSSARY_TERM: "Fogalmak",
+  };
+
+  const groups = new Map(order.map(t => [t, []]));
+  for (const r of results) {
+    const key = groups.has(r.type) ? r.type : "GLOSSARY_TERM";
+    groups.get(key).push(r);
+  }
+
+  const renderRow = (r) => {
     const snippet = r.snippet
-    ? `<div class="search-overlay__snippet">${highlightEscapedHtml(escapeHtml(r.snippet), query)}</div>`
-    : "";
+      ? `<div class="search-overlay__snippet">${highlightEscapedHtml(escapeHtml(r.snippet), query)}</div>`
+      : "";
 
     return `
       <li class="search-overlay__item" data-action="search-select" data-type="${r.type}" data-id="${r.id}">
@@ -83,9 +99,22 @@ function renderResultsList(results, query) {
         </div>
       </li>
     `;
-  }).join("");
+  };
 
-  return `<ul class="search-overlay__list">${rows}</ul>`;
+  const sections = [];
+  for (const t of order) {
+    const items = groups.get(t) || [];
+    if (!items.length) continue;
+    const rows = items.map(renderRow).join("");
+    sections.push(`
+      <div class="search-overlay__section">
+        <div class="search-overlay__section-title">${titles[t] || labelForType(t)}</div>
+        <ul class="search-overlay__list">${rows}</ul>
+      </div>
+    `);
+  }
+
+  return sections.join("");
 }
 
 function labelForType(type) {

@@ -9,6 +9,10 @@ let lastRenderedQuery = "";
 let lastSelStart = null;
 let lastSelEnd = null;
 
+function hideHero() {
+  document.querySelector('.hero')?.classList.add('is-hidden');
+}
+
 function debounce(fn, ms) {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(fn, ms);
@@ -59,9 +63,13 @@ function backToResults() {
   renderSearchOverlay(runSearch(SearchStore.ui.query));
 }
 
-function navigateToSubtopic(subtopicId) {
-  // Router kezeli
-  window.location.hash = `#/lesson/${subtopicId}`;
+function navigateToSubtopic(subtopicId, params = {}) {
+  hideHero();
+  const p = new URLSearchParams();
+  if (params.video) p.set("video", String(params.video));
+  if (params.doc) p.set("doc", String(params.doc));
+  const qs = p.toString();
+  window.location.hash = `#/lesson/${subtopicId}${qs ? `?${qs}` : ""}`;
   closeSearchOverlay();
 }
 
@@ -77,7 +85,7 @@ function openGlossaryDetails(glossaryId) {
   renderSearchOverlay([]);
 }
 
-function ensureVideoContextAndNavigate(videoId) {
+function ensureVideoContextAndNavigate(videoId, opts = {}) {
   // Megpróbáljuk kitalálni a subtopicot a már betöltött relációkból
   // Ha nincs mapping, fallback: lesson nézet nélkül nem tudjuk ideálisan megnyitni.
   const vid = Number(videoId);
@@ -99,10 +107,11 @@ function ensureVideoContextAndNavigate(videoId) {
   }
 
   if (foundSubtopicId != null) {
-    window.location.hash = `#/lesson/${foundSubtopicId}?video=${vid}`;
+    navigateToSubtopic(foundSubtopicId, { video: vid, doc: opts.doc ?? null });
     closeSearchOverlay();
   } else {
     // TODO: ha később lesz önálló video route
+    hideHero();
     window.location.hash = "#/";
     closeSearchOverlay();
   }
@@ -114,35 +123,53 @@ function ensureDocumentContextAndNavigate(documentId) {
   // Dokumentum → videó mapping (documentsByVideo)
   const idxDocByVideo = MenuStore.index?.documentsByVideo;
   let foundVideoId = null;
-  if (idxDocByVideo && idxDocByVideo instanceof Map) {
+
+  if (idxDocByVideo instanceof Map) {
     for (const [videoId, docs] of idxDocByVideo.entries()) {
-      if (Array.isArray(docs) && docs.some(d => Number(d.id) === docId)) {
-        foundVideoId = videoId;
+      if (Array.isArray(docs) && docs.some(d => Number(d?.id ?? d) === docId)) {
+        foundVideoId = Number(videoId);
+        break;
+      }
+    }
+  } else if (idxDocByVideo && typeof idxDocByVideo === "object") {
+    for (const [videoId, docs] of Object.entries(idxDocByVideo)) {
+      if (Array.isArray(docs) && docs.some(d => Number(d?.id ?? d) === docId)) {
+        foundVideoId = Number(videoId);
         break;
       }
     }
   }
 
   if (foundVideoId != null) {
-    ensureVideoContextAndNavigate(foundVideoId);
+    // Navigáljunk a videóhoz, és adjuk át a doc paramot is (router majd kiemeli)
+    ensureVideoContextAndNavigate(foundVideoId, { doc: docId });
     return;
   }
 
-  // Dokumentum → subtopic mapping
+  // Dokumentum → subtopic mapping (documentsBySubtopic)
   const idxDocBySub = MenuStore.index?.documentsBySubtopic;
   let foundSubtopicId = null;
-  if (idxDocBySub && idxDocBySub instanceof Map) {
+
+  if (idxDocBySub instanceof Map) {
     for (const [subId, docs] of idxDocBySub.entries()) {
-      if (Array.isArray(docs) && docs.some(d => Number(d.id) === docId)) {
-        foundSubtopicId = subId;
+      if (Array.isArray(docs) && docs.some(d => Number(d?.id ?? d) === docId)) {
+        foundSubtopicId = Number(subId);
+        break;
+      }
+    }
+  } else if (idxDocBySub && typeof idxDocBySub === "object") {
+    for (const [subId, docs] of Object.entries(idxDocBySub)) {
+      if (Array.isArray(docs) && docs.some(d => Number(d?.id ?? d) === docId)) {
+        foundSubtopicId = Number(subId);
         break;
       }
     }
   }
 
   if (foundSubtopicId != null) {
-    navigateToSubtopic(foundSubtopicId);
+    navigateToSubtopic(foundSubtopicId, { doc: docId });
   } else {
+    hideHero();
     window.location.hash = "#/";
     closeSearchOverlay();
   }

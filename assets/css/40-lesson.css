@@ -134,3 +134,11 @@
 .document-item a:hover{
   text-decoration: underline;
 }
+
+
+.document-item.is-flash{
+  background: #fff9c4;
+  border-color: rgba(0,0,0,0.25);
+  outline: 3px solid #fff176;
+  transition: background 0.2s ease;
+}
