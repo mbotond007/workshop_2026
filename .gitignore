@@ -19,3 +19,5 @@ documents/images/
 documents/docx/
 /documents/workshop_dok_summary_2026_01_01.docx
 /documents/workshop26_project_dev_2026_01_01.docx
+*.zip
+database/
