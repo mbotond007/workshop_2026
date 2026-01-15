@@ -1,4 +1,8 @@
+// a konténer elemek feltöltéséhez szükséges UI szövegek betöltése
+import UiTextStore from "../store/ui-text-store.js";
+
 import MenuStore from "../store/menu-store.js";
+
 
 /**
  * Nyelv kiválasztás: most HU fix.
@@ -64,22 +68,37 @@ export function renderSiteHeader() {
     .forEach(item => {
       // A keresés legyen "input jellegű" trigger a headerben (GenZ/GenA: inkább mező, mint felirat).
       // Fontos: a tényleges keresés az overlayben történik, ez csak megnyitja azt.
-      if (item.action === "open-search") {
-        const wrap = document.createElement("div");
-        wrap.className = "site-header__search";
+      
+    if (item.action === "open-search") {
+    const wrap = document.createElement("div");
+    wrap.className = "site-header__search";
 
-        const input = document.createElement("input");
-        input.type = "search";
-        input.className = "site-header__search-input";
-        input.placeholder = "Keresés…";
-        input.setAttribute("aria-label", "Keresés");
-        input.readOnly = true;
-        input.dataset.action = "open-search";
+    const input = document.createElement("input");
+    input.type = "search";
+    input.className = "site-header__search-input site-header__search-input--joined";
 
-        wrap.appendChild(input);
-        nav.appendChild(wrap);
-        return;
-      }
+    input.placeholder = UiTextStore.t("header.search.placeholder", "Keresés…");
+    input.setAttribute("aria-label", UiTextStore.t("header.search.aria", "Keresés"));
+    input.readOnly = true;
+    input.dataset.action = "open-search";
+
+    const iconBtn = document.createElement("div");
+    iconBtn.className = "site-header__search-btn";
+    iconBtn.dataset.action = "open-search";
+    iconBtn.setAttribute("aria-hidden", "true");
+    iconBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path d="M10 4a6 6 0 104.472 10.03l4.249 4.249a1 1 0 001.414-1.414l-4.249-4.249A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"></path>
+      </svg>
+    `;
+
+    wrap.appendChild(input);
+    wrap.appendChild(iconBtn);
+    nav.appendChild(wrap);
+    return;
+  }
+
+
 
       const btn = document.createElement("button");
       btn.type = "button";

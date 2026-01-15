@@ -1,3 +1,5 @@
+import ContactModal from "./contact-modal.js";
+
 export function initSiteHeaderEvents() {
   const host = document.querySelector(".site-header");
   if (!host) return;
@@ -34,8 +36,17 @@ export function initSiteHeaderEvents() {
         });
         break;
 
+      // a delegált click switch-ben:
       case "open-contact":
-        console.log("TODO: open-contact");
+        ContactModal.open();
+        break;
+
+      case "contact-submit":
+        ContactModal.submit();
+        break;
+
+      case "modal-close":
+        ContactModal.close();
         break;
 
       case "open-login":

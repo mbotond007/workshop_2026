@@ -71,9 +71,12 @@
 }
 
 /* Search trigger (header "fake input") */
+
+/* === YouTube-style fake search === */
+
 .site-header__search{
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 .site-header__search-input{
@@ -104,4 +107,66 @@
   height: 36px;
   width: auto;
   display: block;
+}
+
+.site-header__search-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.site-header__search-icon svg{
+  display: block;
+  fill: currentColor;
+}
+
+/* opcionális: az input bal paddingját picit csökkentheted,
+   mert már van külön ikon */
+.site-header__search-input{
+  padding: 6px 10px; /* maradhat, de ha szoros: 6px 8px */
+}
+
+/* Input – bal oldal kerek, jobb nem */
+.site-header__search-input--joined{
+  width: min(360px, 40vw);
+  padding: 6px 10px;
+  font-size: 16px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  background: var(--bg-surface);
+  color: #111;
+  cursor: text;
+}
+
+/* Ikon gomb – jobb oldal kerek, bal nem */
+.site-header__search-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  background: var(--bg-surface);
+  cursor: pointer;
+}
+
+.site-header__search-btn svg{
+  display: block;
+  fill: currentColor;
+  opacity: 0.75;
+}
+
+/* Hover / focus finomítás */
+.site-header__search-btn:hover{
+  background: rgba(0,0,0,0.04);
+}
+
+.site-header__search-input--joined:focus-visible{
+  outline: 3px solid rgba(51,66,213,0.35);
+  outline-offset: 2px;
 }

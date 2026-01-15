@@ -21,6 +21,7 @@ if (isset($_GET['logout'])) {
         <meta charset="utf-8"> 
         
         <link rel="stylesheet" href="./assets/css/00-tokens-base.css">
+        <link rel="stylesheet" href="./assets/css/05-globals.css">
         <link rel="stylesheet" href="./assets/css/30-layout.css">
         <link rel="stylesheet" href="./assets/css/10-header.css">
         <link rel="stylesheet" href="./assets/css/15-search.css">

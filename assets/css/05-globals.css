@@ -1,0 +1,78 @@
+/* ===== Modal (shared shell) ===== */
+.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.modal__panel{
+  position: relative;
+  width: min(640px, calc(100vw - 24px));
+  margin: 10vh auto 0;
+  background: var(--bg-surface, #fff);
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.25);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.modal__header, .modal__footer{
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.modal__footer{
+  border-bottom: none;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  justify-content: flex-end;
+}
+
+.modal__title{
+  margin: 0;
+  font-size: 18px;
+}
+
+.modal__close{
+  border: 1px solid rgba(0,0,0,0.25);
+  background: transparent;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.modal__body{
+  padding: 14px;
+}
+
+.form-row{ display: grid; gap: 6px; margin-bottom: 12px; }
+.form-label{ font-size: 14px; opacity: 0.85; }
+.form-input, .form-textarea{
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.35);
+  background: #fff;
+}
+
+.form-hint{ min-height: 18px; font-size: 14px; }
+.form-hint.is-error{ color: #b00020; }
+
+.btn-primary{
+  border: 1px solid rgba(0,0,0,0.25);
+  background: rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.btn-primary[disabled]{ opacity: 0.6; cursor: not-allowed; }

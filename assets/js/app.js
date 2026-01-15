@@ -1,5 +1,6 @@
 import MenuStore from './store/menu-store.js';
 
+import { loadUiText } from "./api/load-ui-text.js";
 import { loadCategories } from './api/load-categories.js';
 import { loadBranches } from './api/load-branches.js';
 import { loadTopics } from './api/load-topics.js';
@@ -21,6 +22,9 @@ import { initSearchOverlayEvents } from "./ui/search-overlay.js";
 
 async function initApp() {
     try {
+        // 0) UI szövegek betöltése (minden felhasználói szöveg DB-ből jön)
+        await loadUiText();
+
         // 1) Header menu betöltése
         await loadHeaderMenu();
 
@@ -59,10 +63,10 @@ async function initApp() {
         initCategoryBarEvents();
         initRouter();
        
-        console.log('Documents by video:', MenuStore.index.documentsByVideo);
-        console.log('Documents by subtopic:', MenuStore.index.documentsBySubtopic);
-        console.log('Videos by subtopic:', MenuStore.index.videosBySubtopic);
-        console.log('Topic documents:', MenuStore.index.topicDocuments);
+        //console.log('Documents by video:', MenuStore.index.documentsByVideo);
+        //console.log('Documents by subtopic:', MenuStore.index.documentsBySubtopic);
+        //console.log('Videos by subtopic:', MenuStore.index.videosBySubtopic);
+        //console.log('Topic documents:', MenuStore.index.topicDocuments);
 
         
 

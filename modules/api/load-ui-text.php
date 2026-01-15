@@ -3,20 +3,7 @@ require_once __DIR__ . '/../../config/connect.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-$sql = "
-    SELECT
-        header_menu_id,
-        sort_order,
-        action,
-        menu_type,
-        header_name_hu,
-        header_name_en
-        is_ready
-    FROM header_menu
-    WHERE is_ready = 1
-    ORDER BY sort_order
-";
-
+$sql = "SELECT ui_key, hu, en FROM ui_text";
 $result = $connection->query($sql);
 
 if (!$result) {
@@ -29,7 +16,6 @@ if (!$result) {
 }
 
 $data = [];
-
 while ($row = mysqli_fetch_assoc($result)) {
     $data[] = $row;
 }
@@ -38,4 +24,3 @@ echo json_encode([
     "success" => true,
     "data" => $data
 ]);
-?>
