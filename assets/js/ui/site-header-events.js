@@ -1,4 +1,5 @@
 import ContactModal from "./contact-modal.js";
+import FeedbackModal from "./feedback-modal.js";
 
 export function initSiteHeaderEvents() {
   const host = document.querySelector(".site-header");
@@ -48,6 +49,10 @@ export function initSiteHeaderEvents() {
       case "modal-close":
         ContactModal.close();
         break;
+
+      case "open-feedback":
+      FeedbackModal.open();
+      break;
 
       case "open-login":
         console.log("TODO: open-login");

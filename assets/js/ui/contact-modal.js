@@ -28,6 +28,7 @@ const ContactModal = {
         </div>
 
         <div class="modal__body">
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label class="form-label">${emailLabel}</label>
             <input class="form-input" type="email" name="email" placeholder="${emailPh}" autocomplete="email" />
@@ -94,6 +95,7 @@ const ContactModal = {
   async submit() {
     if (!this.el || this.isSubmitting) return;
 
+    const honeypot = this.el.querySelector('input[name="website"]')?.value || "";
     const email = (this.el.querySelector('input[name="email"]')?.value || "").trim();
     const message = (this.el.querySelector('textarea[name="message"]')?.value || "").trim();
 
@@ -116,7 +118,7 @@ const ContactModal = {
     if (btn) btn.setAttribute("disabled", "disabled");
 
     try {
-      await submitContact({ email, message });
+      await submitContact({ email, message, honeypot });
       this._setStatus(UiTextStore.t("contact.success", "Üzeneted rögzítettük, köszönjük."), false);
 
       // opcionális: 1.2s után zárhat, de most maradjunk konzervatívak:

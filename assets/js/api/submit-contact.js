@@ -1,5 +1,6 @@
-export async function submitContact({ email, message }) {
+export async function submitContact({ email, message, honeypot }) {
   const form = new URLSearchParams();
+  if (honeypot) form.set("website", honeypot);
   form.set("email", email);
   form.set("message", message);
 
